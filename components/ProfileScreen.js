@@ -16,6 +16,7 @@ import * as Animatable from "react-native-animatable";
 import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
+import SearchbarElement from "./MainpageComponents/SearchbarElement";
 
 const ProfileScreen = ({ navigation }) => {
   return (
@@ -38,10 +39,16 @@ const ProfileScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.edit_profile}>
             <Text style={{ color: "dodgerblue" }}>Edit profile</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button_go}>
+          <TouchableOpacity
+            style={styles.button_go}
+            onPress={() => navigation.navigate("Home")}
+          >
             <Text style={styles.goBtntxt}>GO</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("SignIn")}
+          >
             <Text style={styles.signUpBtntxt}>LOGOUT</Text>
           </TouchableOpacity>
         </View>
@@ -142,7 +149,7 @@ const styles = StyleSheet.create({
   },
   goBtntxt: {
     color: "white",
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: "bold",
   },
 });

@@ -16,27 +16,29 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "./SearchbarElement";
+import ArticleCard from "../shared/ArticleCard";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.btn_group_container}>
+      <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <FontAwesome name="user" color="dodgerblue" size={30} />
+          <FontAwesome name="user" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <FontAwesome name="home" color="dodgerblue" size={30} />
+          <FontAwesome name="home" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <FontAwesome name="star" color="dodgerblue" size={30} />
+          <FontAwesome name="star" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <FontAwesome name="plus-circle" color="dodgerblue" size={30} />
+          <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
         </TouchableOpacity>
-      </View>
+      </Animatable.View>
       <View style={styles.searchbar_container}>
         <SearchbarElement />
       </View>
+      <ArticleCard />
     </View>
   );
 };
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    width: "70%",
+    width: "75%",
   },
   searchbar_container: {
     paddingTop: 10,

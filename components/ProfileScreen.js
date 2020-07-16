@@ -16,7 +16,6 @@ import * as Animatable from "react-native-animatable";
 import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import SearchbarElement from "./MainpageComponents/SearchbarElement";
 
 const ProfileScreen = ({ navigation }) => {
   return (
@@ -31,7 +30,7 @@ const ProfileScreen = ({ navigation }) => {
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
         <View style={styles.container_profile}>
-          <Avatar.Image size={200} source={require("../assets/avatar.png")} />
+          <Avatar.Image size={200} source={require("../assets/profile.png")} />
           <Text style={styles.text_footer1}>Thurairajah Yathurshan</Text>
           <Text style={styles.text_footer2}>yathurshan@gmail.com</Text>
         </View>

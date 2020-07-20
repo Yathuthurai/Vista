@@ -7,19 +7,47 @@ import CardBottom from "./CardBottom";
 
 const ArticleCard = () => {
   return (
-    <TouchableOpacity style={styles.article_card}>
-      <View style={styles.avatar_part}>
-        <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
-        <View style={styles.avatar_txt}>
-          <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
-          <Text style={styles.text_avatar_moment}>2 hours ago</Text>
+    <View>
+      <TouchableOpacity style={styles.article_card}>
+        <View style={styles.avatar_part}>
+          <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
+          <View style={styles.avatar_txt}>
+            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
+            <Text style={styles.text_avatar_moment}>2 hours ago</Text>
+          </View>
         </View>
-      </View>
-      <Text style={styles.title}>Future of Virtual Reality</Text>
-      <Image source={require("./assets/card1.jpg")} style={styles.card} />
-      <CardBottom />
-      <View style={styles.line_avatar} />
-    </TouchableOpacity>
+        <Text style={styles.title}>Future of Virtual Reality</Text>
+        <Image source={require("./assets/card1.jpg")} style={styles.card} />
+        <CardBottom />
+        <View style={styles.line_avatar} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.article_card}>
+        <View style={styles.avatar_part}>
+          <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
+          <View style={styles.avatar_txt}>
+            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
+            <Text style={styles.text_avatar_moment}>2 hours ago</Text>
+          </View>
+        </View>
+        <Text style={styles.title}>Future of Virtual Reality</Text>
+        <Image source={require("./assets/card1.jpg")} style={styles.card} />
+        <CardBottom />
+        <View style={styles.line_avatar} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.article_card}>
+        <View style={styles.avatar_part}>
+          <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
+          <View style={styles.avatar_txt}>
+            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
+            <Text style={styles.text_avatar_moment}>2 hours ago</Text>
+          </View>
+        </View>
+        <Text style={styles.title}>Future of Virtual Reality</Text>
+        <Image source={require("./assets/card1.jpg")} style={styles.card} />
+        <CardBottom />
+        <View style={styles.line_avatar} />
+      </TouchableOpacity>
+    </View>
   );
 };
 

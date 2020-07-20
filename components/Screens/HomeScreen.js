@@ -8,6 +8,7 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
+  ScrollView,
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
@@ -38,7 +39,9 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.searchbar_container}>
         <SearchbarElement />
       </View>
-      <ArticleCard />
+      <ScrollView>
+        <ArticleCard />
+      </ScrollView>
     </View>
   );
 };

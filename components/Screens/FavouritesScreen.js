@@ -15,10 +15,9 @@ import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import SearchbarElement from "./SearchbarElement";
-import ArticleCard from "../shared/ArticleCard";
+import SearchbarElement from "../MainpageComponents/SearchbarElement";
 
-const HomeScreen = ({ navigation }) => {
+const FavouritesScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
@@ -38,12 +37,12 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.searchbar_container}>
         <SearchbarElement />
       </View>
-      <ArticleCard />
+      <Text>Favourites here</Text>
     </View>
   );
 };
 
-export default HomeScreen;
+export default FavouritesScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import CardBottom from "./CardBottom";
 
 const ArticleCard = () => {
   return (
@@ -16,17 +17,7 @@ const ArticleCard = () => {
       </View>
       <Text style={styles.title}>Future of Virtual Reality</Text>
       <Image source={require("./assets/card1.jpg")} style={styles.card} />
-      <View style={styles.bottomRow}>
-        <View style={styles.sourceContainer}>
-          <FontAwesome name="comments" style={styles.comment_icon} size={30} />
-          <TouchableOpacity>
-            <Text style={styles.comment_text}>Comment</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome style={styles.star_icon} name="star" size={25} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <CardBottom />
       <View style={styles.line_avatar} />
     </TouchableOpacity>
   );
@@ -36,30 +27,16 @@ export default ArticleCard;
 
 const styles = StyleSheet.create({
   article_card: {
-    flex: 1,
-    width: "100%",
-    aspectRatio: 16 / 9,
+    //flex: 1,
+    //width: "100%",
+    //aspectRatio: 16 / 9,
     borderRadius: 5,
   },
   card: {
-    width: "90%",
-    height: 195,
-    aspectRatio: 16 / 9,
-    borderRadius: 5,
-  },
-  sourceContainer: {
-    width: "50%",
-    flexDirection: "row",
-  },
-  sourceContainero: {
-    width: "50%",
-    flexDirection: "row-reverse",
-  },
-  bottomRow: {
     width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 10,
+    height: 195,
+    //aspectRatio: 16 / 9,
+    borderRadius: 5,
   },
   image: {
     borderRadius: 5,
@@ -70,39 +47,11 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     fontWeight: "700",
   },
-  bottomRow: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  comment_icon: {
-    color: "grey",
-    paddingTop: 5,
-  },
-  star_icon: {
-    color: "grey",
-    paddingTop: 10,
-    paddingHorizontal: 15,
-  },
-  comment_text: {
-    color: "grey",
-    paddingTop: 10,
-    fontSize: 16,
-    paddingHorizontal: 5,
-  },
   logo: {
     width: 20,
     height: 20,
     borderRadius: 40,
     marginRight: 5,
-  },
-  sourceContainer: {
-    width: "50%",
-    flexDirection: "row",
-  },
-  sourceContainero: {
-    width: "50%",
-    flexDirection: "row-reverse",
   },
   avatar_part: {
     flexDirection: "row",
@@ -132,3 +81,15 @@ const styles = StyleSheet.create({
     borderColor: "gainsboro",
   },
 });
+
+/*
+<View style={styles.sourceContainer}>
+          <FontAwesome name="comments" style={styles.comment_icon} size={30} />
+          <TouchableOpacity>
+            <Text style={styles.comment_text}>Comment</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <FontAwesome style={styles.star_icon} name="star" size={25} />
+          </TouchableOpacity>
+        </View>
+*/

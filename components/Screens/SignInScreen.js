@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   button: {
-    width: 350,
+    //width: 350,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   signIn: {
-    width: "100%",
+    //width: "100%",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   signUpBtn: {
-    width: 350,
+    //width: 350,
     height: 40,
     justifyContent: "center",
     alignItems: "center",

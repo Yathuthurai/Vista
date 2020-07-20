@@ -5,48 +5,24 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
 
-const ArticleCard = () => {
+const ArticleCard = (props) => {
   return (
     <View>
-      <TouchableOpacity style={styles.article_card}>
+      <View style={styles.article_card}>
         <View style={styles.avatar_part}>
-          <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
+          <Avatar.Image size={50} source={{ uri: props.avatar }} />
           <View style={styles.avatar_txt}>
-            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
-            <Text style={styles.text_avatar_moment}>2 hours ago</Text>
+            <Text style={styles.text_avatar_name}>{props.name}</Text>
+            <Text style={styles.text_avatar_moment}>{props.time}</Text>
           </View>
         </View>
-        <Text style={styles.title}>Future of Virtual Reality</Text>
-        <Image source={require("./assets/card1.jpg")} style={styles.card} />
+        <TouchableOpacity>
+          <Text style={styles.title}>{props.title}</Text>
+          <Image source={{ uri: props.image }} style={styles.card} />
+        </TouchableOpacity>
         <CardBottom />
         <View style={styles.line_avatar} />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.article_card}>
-        <View style={styles.avatar_part}>
-          <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
-          <View style={styles.avatar_txt}>
-            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
-            <Text style={styles.text_avatar_moment}>2 hours ago</Text>
-          </View>
-        </View>
-        <Text style={styles.title}>Future of Virtual Reality</Text>
-        <Image source={require("./assets/card1.jpg")} style={styles.card} />
-        <CardBottom />
-        <View style={styles.line_avatar} />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.article_card}>
-        <View style={styles.avatar_part}>
-          <Avatar.Image size={50} source={require("./assets/profile.jpg")} />
-          <View style={styles.avatar_txt}>
-            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
-            <Text style={styles.text_avatar_moment}>2 hours ago</Text>
-          </View>
-        </View>
-        <Text style={styles.title}>Future of Virtual Reality</Text>
-        <Image source={require("./assets/card1.jpg")} style={styles.card} />
-        <CardBottom />
-        <View style={styles.line_avatar} />
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };

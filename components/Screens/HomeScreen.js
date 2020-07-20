@@ -8,7 +8,7 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
-  ScrollView,
+  FlatList,
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
@@ -18,8 +18,10 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
 import ArticleCard from "../shared/ArticleCard";
+import { useSelector } from "react-redux";
 
 const HomeScreen = ({ navigation }) => {
+  const article_data = useSelector((state) => state.article.allPosts);
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
@@ -39,9 +41,18 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.searchbar_container}>
         <SearchbarElement />
       </View>
-      <ScrollView>
-        <ArticleCard />
-      </ScrollView>
+      <FlatList
+        data={article_data}
+        renderItem={({ item }) => (
+          <ArticleCard
+            avatar={item.avatar}
+            name={item.owner}
+            time={item.moment}
+            title={item.title}
+            image={item.imgUrl}
+          />
+        )}
+      />
     </View>
   );
 };

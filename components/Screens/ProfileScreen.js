@@ -38,7 +38,10 @@ const ProfileScreen = ({ navigation }) => {
           <Text style={styles.text_footer2}>yathurshan@gmail.com</Text>
         </View>
         <View style={styles.container_profile_other}>
-          <TouchableOpacity style={styles.edit_profile}>
+          <TouchableOpacity
+            style={styles.edit_profile}
+            onPress={() => navigation.navigate("EditProfile")}
+          >
             <Text style={{ color: "dodgerblue" }}>Edit profile</Text>
           </TouchableOpacity>
           <TouchableOpacity

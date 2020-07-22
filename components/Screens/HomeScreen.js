@@ -34,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
           <FontAwesome name="star" color="dodgerblue" size={33} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate("Add")}>
           <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
         </TouchableOpacity>
       </Animatable.View>

@@ -15,6 +15,7 @@ import ProfileScreen from "./components/Screens/ProfileScreen";
 import EditProfileScreen from "./components/Screens/EditProfileScreen";
 import HomeScreen from "./components/Screens/HomeScreen";
 import FavouritesScreen from "./components/Screens/FavouritesScreen";
+import AddArticleScreen from "./components/Screens/AddArticleScreen";
 import ArticleReducer from "./components/Store/Reducers/Articles";
 
 const Stack = createStackNavigator();
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="EditProfile" component={EditProfileScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Add" component={AddArticleScreen} />
           <Stack.Screen name="Favourites" component={FavouritesScreen} />
           <Stack.Screen name="Registered" component={RegisteredScreen} />
         </Stack.Navigator>

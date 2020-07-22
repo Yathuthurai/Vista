@@ -17,7 +17,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
 
-const FavouritesScreen = ({ navigation }) => {
+const AddArticleScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
@@ -34,15 +34,12 @@ const FavouritesScreen = ({ navigation }) => {
           <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
         </TouchableOpacity>
       </Animatable.View>
-      <View style={styles.searchbar_container}>
-        <SearchbarElement />
-      </View>
-      <Text>Favourites here</Text>
+      <Text>Add Articles here</Text>
     </View>
   );
 };
 
-export default FavouritesScreen;
+export default AddArticleScreen;
 
 const styles = StyleSheet.create({
   container: {

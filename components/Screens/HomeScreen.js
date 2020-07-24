@@ -31,7 +31,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <FontAwesome name="home" color="dodgerblue" size={33} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
+        <TouchableOpacity onPress={() => navigation.navigate("FullView")}>
           <FontAwesome name="star" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Add")}>
@@ -44,13 +44,15 @@ const HomeScreen = ({ navigation }) => {
       <FlatList
         data={article_data}
         renderItem={({ item }) => (
-          <ArticleCard
-            avatar={item.avatar}
-            name={item.owner}
-            time={item.moment}
-            title={item.title}
-            image={item.imgUrl}
-          />
+          <TouchableOpacity>
+            <ArticleCard
+              avatar={item.avatar}
+              name={item.owner}
+              time={item.moment}
+              title={item.title}
+              image={item.imgUrl}
+            />
+          </TouchableOpacity>
         )}
       />
     </View>

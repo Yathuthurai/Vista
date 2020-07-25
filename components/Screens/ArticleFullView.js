@@ -14,7 +14,9 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import ArticleCardFullView from "../shared/ArticleCardFullView";
-const ArticleFullView = ({ navigation }) => {
+import { useSelector } from "react-redux";
+const ArticleFullView = ({ navigation, route }) => {
+  const articleId = route.params.id;
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>

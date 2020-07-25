@@ -22,6 +22,11 @@ import { useSelector } from "react-redux";
 
 const HomeScreen = ({ navigation }) => {
   const article_data = useSelector((state) => state.article.allPosts);
+
+  const clickHandler = (id) => {
+    navigation.navigate("ArticleCardFullView", { id });
+  };
+
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
@@ -31,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <FontAwesome name="home" color="dodgerblue" size={33} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("FullView")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
           <FontAwesome name="star" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Add")}>
@@ -44,15 +49,14 @@ const HomeScreen = ({ navigation }) => {
       <FlatList
         data={article_data}
         renderItem={({ item }) => (
-          <TouchableOpacity>
-            <ArticleCard
-              avatar={item.avatar}
-              name={item.owner}
-              time={item.moment}
-              title={item.title}
-              image={item.imgUrl}
-            />
-          </TouchableOpacity>
+          <ArticleCard
+            clickHandler={() => clickHandler(item.id)}
+            avatar={item.avatar}
+            name={item.owner}
+            time={item.moment}
+            title={item.title}
+            image={item.imgUrl}
+          />
         )}
       />
     </View>

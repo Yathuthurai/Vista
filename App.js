@@ -35,7 +35,10 @@ export default function App() {
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="EditProfile" component={EditProfileScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="FullView" component={ArticleFullView} />
+          <Stack.Screen
+            name="ArticleCardFullView"
+            component={ArticleFullView}
+          />
           <Stack.Screen name="Add" component={AddArticleScreen} />
           <Stack.Screen name="Favourites" component={FavouritesScreen} />
           <Stack.Screen name="Registered" component={RegisteredScreen} />

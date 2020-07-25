@@ -7,7 +7,8 @@ const ARTICLE_POST = [
     "Thurairajah Yathurshan",
     "2hours ago",
     "Future of Science & Technology",
-    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg"
+    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg",
+    "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
   new ArticlPost(
     "a2",
@@ -15,7 +16,8 @@ const ARTICLE_POST = [
     "Ganesan Khosalan",
     "3hours ago",
     "Future of Vita",
-    "https://cdn2.unrealengine.com/the-cycle-season3-carousel-image-1360x765-343571200.jpg?h=1080&resize=1&w=1920"
+    "https://cdn2.unrealengine.com/the-cycle-season3-carousel-image-1360x765-343571200.jpg?h=1080&resize=1&w=1920",
+    "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
   new ArticlPost(
     "a3",
@@ -23,7 +25,8 @@ const ARTICLE_POST = [
     "Thavaranjan Mayurathan",
     "4hours ago",
     "Legal and Ethical issues in Video Games",
-    "https://data2.origin.com/content/dam/originx/web/app/programs/About/aboutorigin_3840x2160_battlefield1.jpg"
+    "https://data2.origin.com/content/dam/originx/web/app/programs/About/aboutorigin_3840x2160_battlefield1.jpg",
+    "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
   new ArticlPost(
     "a4",
@@ -31,7 +34,8 @@ const ARTICLE_POST = [
     "Thavaranjan Mayurathan",
     "1hours ago",
     "Future of Science",
-    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg"
+    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg",
+    "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
   new ArticlPost(
     "a5",
@@ -39,7 +43,8 @@ const ARTICLE_POST = [
     "Harry Potter",
     "4hours ago",
     "Future of Technology",
-    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg"
+    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg",
+    "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
 ];
 

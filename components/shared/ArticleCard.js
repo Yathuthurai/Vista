@@ -16,7 +16,7 @@ const ArticleCard = (props) => {
             <Text style={styles.text_avatar_moment}>{props.time}</Text>
           </View>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={props.clickHandler}>
           <Text style={styles.title}>{props.title}</Text>
           <Image source={{ uri: props.image }} style={styles.card} />
         </TouchableOpacity>

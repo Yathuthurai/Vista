@@ -7,6 +7,7 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
+  ScrollView,
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
@@ -39,6 +40,7 @@ const AddArticleScreen = ({ navigation }) => {
           <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
         </TouchableOpacity>
       </Animatable.View>
+
       <View style={styles.add_article_container}>
         <View style={{ paddingTop: 50 }}>
           <Text style={styles.inputHeading}>Add your Article title here</Text>
@@ -77,7 +79,7 @@ const AddArticleScreen = ({ navigation }) => {
               onChangeText={(text3) => setText3(text3)}
               mode="outlined"
               dense="true"
-              numberOfLines={200}
+              multiline
               style={{ backgroundColor: "white" }}
             />
           </View>

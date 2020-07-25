@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -8,18 +8,27 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 
 import * as Animatable from "react-native-animatable";
 import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
+
+import { signUp } from "../Store/Actions/auth";
+
+import { useDispatch } from "react-redux";
+import { color } from "react-native-reanimated";
+
 const SignUpScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: "",
     password: "",
     check_textInputChange: false,
     secureTextEntry: true,
+    error: null,
+    isLoading: false,
   });
 
   const textInputChange = (val) => {
@@ -52,6 +61,38 @@ const SignUpScreen = ({ navigation }) => {
     });
   };
 
+  const dispatch = useDispatch();
+
+  const submitHandler = async () => {
+    setData({
+      ...data,
+      error: null,
+      isLoading: true,
+    });
+    try {
+      await dispatch(signUp(data.email, data.password));
+      navigation.navigate("Profile");
+    } catch (e) {
+      setData({
+        ...data,
+        error: e.message,
+        isLoading: false,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (data.error) {
+      Alert.alert("An error occured", data.error, [{ text: "OK" }]);
+    }
+  }, [data.error]);
+  if (data.isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="dodgerblue" />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -112,10 +153,7 @@ const SignUpScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("Registered")}
-          >
+          <TouchableOpacity style={styles.button} onPress={submitHandler}>
             <Text style={styles.signInBtntxt}>Sign Up</Text>
           </TouchableOpacity>
           <TouchableOpacity

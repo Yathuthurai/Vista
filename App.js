@@ -4,7 +4,8 @@ import WelcomeScreen from "./components/Screens/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import ReduxThunk from "redux-thunk";
 
 import { Provider } from "react-redux";
 
@@ -23,7 +24,7 @@ const Stack = createStackNavigator();
 
 const rootReducer = combineReducers({ article: ArticleReducer });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 export default function App() {
   return (
     <Provider store={store}>

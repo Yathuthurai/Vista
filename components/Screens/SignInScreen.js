@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -8,18 +8,26 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
+  ActivityIndicator,
 } from "react-native";
+
+import { logIn } from "../Store/Actions/auth";
+
+import { useDispatch } from "react-redux";
 
 import * as Animatable from "react-native-animatable";
 import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
+
 const SignInScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: "",
     password: "",
     check_textInputChange: false,
     secureTextEntry: true,
+    error: null,
+    isLoading: false,
   });
 
   const textInputChange = (val) => {
@@ -51,6 +59,40 @@ const SignInScreen = ({ navigation }) => {
       secureTextEntry: !data.secureTextEntry,
     });
   };
+
+  const dispatch = useDispatch();
+
+  const submitHandler = async () => {
+    setData({
+      ...data,
+      error: null,
+      isLoading: true,
+    });
+    try {
+      await dispatch(logIn(data.email, data.password));
+      navigation.navigate("Profile");
+    } catch (e) {
+      setData({
+        ...data,
+        error: e.message,
+        isLoading: false,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (data.error) {
+      Alert.alert("An error occured", data.error, [{ text: "OK" }]);
+    }
+  }, [data.error]);
+
+  if (data.isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="dodgerblue" />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -92,10 +134,7 @@ const SignInScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("Profile")}
-          >
+          <TouchableOpacity style={styles.button} onPress={submitHandler}>
             <Text style={styles.signInBtntxt}>Sign In</Text>
           </TouchableOpacity>
           <TouchableOpacity

@@ -17,12 +17,23 @@ import ArticleCardFullView from "../shared/ArticleCardFullView";
 import { useSelector } from "react-redux";
 const ArticleFullView = ({ navigation, route }) => {
   const articleId = route.params.id;
+  const article = useSelector((state) =>
+    state.article.allPosts.find((article) => article.id === articleId)
+  );
+  console.log(article);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text style={styles.back_txt}>Back</Text>
       </TouchableOpacity>
-      <ArticleCardFullView />
+      <ArticleCardFullView
+        avatar={article.avatar}
+        name={article.owner}
+        time={article.moment}
+        title={article.title}
+        image={article.imgUrl}
+        description={article.description}
+      />
     </View>
   );
 };

@@ -12,105 +12,25 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
 
-const ArticleCard = () => {
+const ArticleCard = (props) => {
   return (
-    <View>
+    <ScrollView>
       <View style={styles.article_card}>
         <View style={styles.avatar_part}>
-          <Avatar.Image
-            size={50}
-            source={{
-              uri:
-                "https://images.theconversation.com/files/304864/original/file-20191203-67028-qfiw3k.jpeg?ixlib=rb-1.1.0&rect=638%2C2%2C795%2C745&q=45&auto=format&w=496&fit=clip",
-            }}
-          />
+          <Avatar.Image size={50} source={{ uri: props.avatar }} />
           <View style={styles.avatar_txt}>
-            <Text style={styles.text_avatar_name}>Thurairajah Yathurshan</Text>
-            <Text style={styles.text_avatar_moment}>a moment ago</Text>
+            <Text style={styles.text_avatar_name}>{props.name}</Text>
+            <Text style={styles.text_avatar_moment}>{props.time}</Text>
           </View>
         </View>
         <TouchableOpacity>
-          <Text style={styles.title}>Future of Artificial Inteligence</Text>
-          <Image
-            source={{
-              uri:
-                "https://enterprisetalk.com/wp-content/uploads/2019/06/Human-Intelligence-Can-Fix-AI-Shortcomings-1.jpg",
-            }}
-            style={styles.card}
-          />
+          <Text style={styles.title}>{props.title}</Text>
+          <Image source={{ uri: props.image }} style={styles.card} />
         </TouchableOpacity>
         <View style={styles.line_avatar} />
-        <ScrollView>
-          <Text style={{ textAlign: "justify" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text style={{ textAlign: "justify" }}>
-            {"\n"}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text style={{ textAlign: "justify" }}>
-            {"\n"}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text style={{ textAlign: "justify" }}>
-            {"\n"}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text style={{ textAlign: "justify" }}>
-            {"\n"}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text style={{ textAlign: "justify" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Text style={{ textAlign: "justify" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-        </ScrollView>
+        <Text style={{ textAlign: "justify" }}>{props.description}</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

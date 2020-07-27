@@ -42,74 +42,80 @@ const AddArticleScreen = ({ navigation }) => {
       </Animatable.View>
 
       <View style={styles.add_article_container}>
-        <View style={{ paddingTop: 50 }}>
-          <Text style={styles.inputHeading}>Add your Article title here</Text>
-          <View>
-            <TextInput
-              label="Title"
-              value={text1}
-              onChangeText={(text1) => setText1(text1)}
-              underlineColor="dodgerblue"
-              mode="outlined"
-              dense="true"
-              style={{ backgroundColor: "white" }}
-            />
+        <ScrollView>
+          <View style={{ paddingTop: 50 }}>
+            <Text style={styles.inputHeading}>Add your Article title here</Text>
+            <View>
+              <TextInput
+                label="Title"
+                value={text1}
+                onChangeText={(text1) => setText1(text1)}
+                underlineColor="dodgerblue"
+                mode="outlined"
+                dense="true"
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{ paddingTop: 20 }}>
-          <Text style={styles.inputHeading}>Add your Image url here</Text>
-          <View>
-            <TextInput
-              label="ImgUrl"
-              value={text2}
-              onChangeText={(text2) => setText2(text2)}
-              underlineColor="dodgerblue"
-              mode="outlined"
-              dense="true"
-              style={{ backgroundColor: "white" }}
-            />
+          <View style={{ paddingTop: 20 }}>
+            <Text style={styles.inputHeading}>Add your Image url here</Text>
+            <View>
+              <TextInput
+                label="ImgUrl"
+                value={text2}
+                onChangeText={(text2) => setText2(text2)}
+                underlineColor="dodgerblue"
+                mode="outlined"
+                dense="true"
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{ paddingTop: 20 }}>
-          <Text style={styles.inputHeading}>Add your Article Content here</Text>
-          <View>
-            <TextInput
-              label="Reference"
-              value={text3}
-              onChangeText={(text3) => setText3(text3)}
-              mode="outlined"
-              dense="true"
-              multiline
-              style={{ backgroundColor: "white" }}
-            />
+          <View style={{ paddingTop: 20 }}>
+            <Text style={styles.inputHeading}>
+              Add your Article Content here
+            </Text>
+            <View>
+              <TextInput
+                label="Reference"
+                value={text3}
+                onChangeText={(text3) => setText3(text3)}
+                mode="outlined"
+                dense="true"
+                multiline
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{ paddingTop: 20 }}>
-          <Text style={styles.inputHeading}>Add your Reference Links here</Text>
-          <View>
-            <TextInput
-              label="Reference"
-              value={text4}
-              onChangeText={(text4) => setText4(text4)}
-              mode="outlined"
-              dense="true"
-              style={{ backgroundColor: "white" }}
-            />
+          <View style={{ paddingTop: 20 }}>
+            <Text style={styles.inputHeading}>
+              Add your Reference Links here
+            </Text>
+            <View>
+              <TextInput
+                label="Reference"
+                value={text4}
+                onChangeText={(text4) => setText4(text4)}
+                mode="outlined"
+                dense="true"
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{ alignItems: "center", paddingVertical: 20 }}>
-          <TouchableOpacity
-            style={styles.button_go}
-            onPress={() =>
-              Alert.alert("Confirm", "Are you going to post this Article ?", [
-                { text: "Post", onPress: () => navigation.navigate("Home") },
-                { text: "Cancel" },
-              ])
-            }
-          >
-            <Text style={styles.goBtntxt}>POST</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={{ alignItems: "center", paddingVertical: 20 }}>
+            <TouchableOpacity
+              style={styles.button_go}
+              onPress={() =>
+                Alert.alert("Confirm", "Are you going to post this Article ?", [
+                  { text: "Post", onPress: () => navigation.navigate("Home") },
+                  { text: "Cancel" },
+                ])
+              }
+            >
+              <Text style={styles.goBtntxt}>POST</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
     width: "75%",
   },
   add_article_container: {
-    paddingTop: 25,
+    paddingTop: 20,
   },
   textInput: {
     marginTop: Platform.OS === "ios" ? 0 : -12,

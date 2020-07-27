@@ -7,7 +7,7 @@ const ARTICLE_POST = [
     "Thurairajah Yathurshan",
     "2hours ago",
     "Future of Science & Technology",
-    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg",
+    "https://www.scitecheuropa.eu/wp-content/uploads/2019/07/ClaudioVentrella.jpg",
     "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
   new ArticlPost(
@@ -34,7 +34,7 @@ const ARTICLE_POST = [
     "Thavaranjan Mayurathan",
     "1hours ago",
     "Future of Science",
-    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg",
+    "https://o365.vn/wp-content/uploads/Ai-startups-tech-Peter-Rejceck-shutterstock-1290615073-1068x601.jpg",
     "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
   new ArticlPost(
@@ -43,7 +43,7 @@ const ARTICLE_POST = [
     "Harry Potter",
     "4hours ago",
     "Future of Technology",
-    "https://cdn.worldsciencefestival.com/wp-content/uploads/2017/03/PERCEPTIONS_OF_SCIENCE_800x494.jpg",
+    "https://industrywired.com/wp-content/uploads/2020/01/How_Cognitive-Computing-and-AI-Drives-Disruptive-Innovation.jpg",
     "In writing, the words point and purpose are almost synonymous. Your point is your purpose, and how you decide to make your point clear to your reader is also your purpose. Writers have a point and a purpose for every paragraph that they create."
   ),
 ];

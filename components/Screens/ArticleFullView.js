@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start",
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    paddingBottom: 2,
   },
   back_txt: {
     paddingVertical: 25,

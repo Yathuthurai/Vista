@@ -8,6 +8,7 @@ import {
   StatusBar,
   Alert,
   ScrollView,
+  TextInput,
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
@@ -16,7 +17,7 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
-import { Divider, TextInput } from "react-native-paper";
+import { Divider } from "react-native-paper";
 //import TextInputArticle from "../shared/TextInputArticle";
 
 const AddArticleScreen = ({ navigation }) => {
@@ -43,64 +44,54 @@ const AddArticleScreen = ({ navigation }) => {
 
       <View style={styles.add_article_container}>
         <ScrollView>
-          <View style={{ paddingTop: 50 }}>
-            <Text style={styles.inputHeading}>Add your Article title here</Text>
-            <View>
-              <TextInput
-                label="Title"
-                value={text1}
-                onChangeText={(text1) => setText1(text1)}
-                underlineColor="dodgerblue"
-                mode="outlined"
-                dense="true"
-                style={{ backgroundColor: "white" }}
-              />
-            </View>
+          <Text style={[styles.text_footer, { marginTop: 30 }]}>
+            Add your article title
+          </Text>
+          <View style={styles.action}>
+            <FontAwesome name="bookmark" color="#05375a" size={20} />
+            <TextInput
+              placeholder="Article title"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={(text1) => setText4(text1)}
+            />
           </View>
-          <View style={{ paddingTop: 20 }}>
-            <Text style={styles.inputHeading}>Add your Image url here</Text>
-            <View>
-              <TextInput
-                label="ImgUrl"
-                value={text2}
-                onChangeText={(text2) => setText2(text2)}
-                underlineColor="dodgerblue"
-                mode="outlined"
-                dense="true"
-                style={{ backgroundColor: "white" }}
-              />
-            </View>
+          <Text style={[styles.text_footer, { marginTop: 30 }]}>
+            Add your Image url here
+          </Text>
+          <View style={styles.action}>
+            <FontAwesome name="image" color="#05375a" size={17} />
+            <TextInput
+              placeholder="Image url"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={(text2) => setText4(text2)}
+            />
           </View>
-          <View style={{ paddingTop: 20 }}>
-            <Text style={styles.inputHeading}>
-              Add your Article Content here
-            </Text>
-            <View>
-              <TextInput
-                label="Reference"
-                value={text3}
-                onChangeText={(text3) => setText3(text3)}
-                mode="outlined"
-                dense="true"
-                multiline
-                style={{ backgroundColor: "white" }}
-              />
-            </View>
+          <Text style={[styles.text_footer, { marginTop: 30 }]}>
+            Add your Article Content here
+          </Text>
+          <View style={styles.action}>
+            <FontAwesome name="book" color="#05375a" size={20} />
+            <TextInput
+              placeholder="Article content"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={(text3) => setText4(text3)}
+              multiline
+            />
           </View>
-          <View style={{ paddingTop: 20 }}>
-            <Text style={styles.inputHeading}>
-              Add your Reference Links here
-            </Text>
-            <View>
-              <TextInput
-                label="Reference"
-                value={text4}
-                onChangeText={(text4) => setText4(text4)}
-                mode="outlined"
-                dense="true"
-                style={{ backgroundColor: "white" }}
-              />
-            </View>
+          <Text style={[styles.text_footer, { marginTop: 30 }]}>
+            Add your Reference Links here
+          </Text>
+          <View style={styles.action}>
+            <FontAwesome name="link" color="#05375a" size={20} />
+            <TextInput
+              placeholder="References"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={(text4) => setText4(text4)}
+            />
           </View>
           <View style={{ alignItems: "center", paddingVertical: 20 }}>
             <TouchableOpacity
@@ -170,4 +161,83 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "bold",
   },
+  textInput: {
+    flex: 1,
+    marginTop: Platform.OS === "ios" ? 0 : -12,
+    paddingLeft: 10,
+    color: "slategray",
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
+  },
+  text_footer: {
+    color: "#05375a",
+    fontSize: 18,
+  },
 });
+
+/*
+<View style={{ paddingTop: 50 }}>
+            <Text style={styles.inputHeading}>Add your Article title here</Text>
+            <View>
+              <TextInput
+                label="Title"
+                value={text1}
+                onChangeText={(text1) => setText1(text1)}
+                underlineColor="dodgerblue"
+                mode="outlined"
+                dense="true"
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
+          </View>
+          <View style={{ paddingTop: 20 }}>
+            <Text style={styles.inputHeading}>Add your Image url here</Text>
+            <View>
+              <TextInput
+                label="ImgUrl"
+                value={text2}
+                onChangeText={(text2) => setText2(text2)}
+                underlineColor="dodgerblue"
+                mode="outlined"
+                dense="true"
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
+          </View>
+          <View style={{ paddingTop: 20 }}>
+            <Text style={styles.inputHeading}>
+              Add your Article Content here
+            </Text>
+            <View>
+              <TextInput
+                label="Reference"
+                value={text3}
+                onChangeText={(text3) => setText3(text3)}
+                mode="outlined"
+                dense="true"
+                multiline
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
+          </View>
+          <View style={{ paddingTop: 20 }}>
+            <Text style={styles.inputHeading}>
+              Add your Reference Links here
+            </Text>
+            <View>
+              <TextInput
+                label="Reference"
+                value={text4}
+                onChangeText={(text4) => setText4(text4)}
+                mode="outlined"
+                dense="true"
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
+          </View>
+*/

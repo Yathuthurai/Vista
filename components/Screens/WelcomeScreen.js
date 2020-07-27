@@ -27,7 +27,7 @@ const WelcomeScreen = ({ navigation }) => {
         />
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
-        <Text style={styles.title}>Stay connected with Everyone!</Text>
+        <Text style={styles.title}>Share your knowledge with Everyone!</Text>
         <Text style={styles.text}>Sign In with account</Text>
         <View style={styles.button}>
           <TouchableOpacity style={styles.signIn}>

@@ -6,13 +6,35 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  TextInput,
 } from "react-native";
 import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
+import Feather from "react-native-vector-icons/Feather";
 
 const ArticleCard = (props) => {
+  const [data, setData] = React.useState({
+    comment: "",
+    check_textInputChange: false,
+  });
+  const textInputChange = (val) => {
+    if (val.length >= 0) {
+      setData({
+        ...data,
+        comment: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        comment: val,
+        check_textInputChange: true,
+      });
+    }
+  };
+
   return (
     <ScrollView>
       <View style={styles.article_card}>
@@ -34,6 +56,31 @@ const ArticleCard = (props) => {
           <View style={styles.comment_section}>
             <Avatar.Image size={50} source={{ uri: props.avatar }} />
             <View style={styles.comment_txt}>
+              <View style={styles.action}>
+                <TextInput
+                  placeholder="Write a comment..."
+                  autoCapitalize="none"
+                  style={styles.textInput}
+                  onChangeText={(val) => textInputChange(val)}
+                  multiline
+                />
+                {data.check_textInputChange ? (
+                  <TouchableOpacity style={{ paddingRight: 5 }}>
+                    <Animatable.View animation="bounceIn">
+                      <Feather
+                        name="message-circle"
+                        color="dodgerblue"
+                        size={20}
+                      />
+                    </Animatable.View>
+                  </TouchableOpacity>
+                ) : null}
+              </View>
+            </View>
+          </View>
+          <View style={styles.comment_section}>
+            <Avatar.Image size={50} source={{ uri: props.avatar }} />
+            <View style={styles.comment_txt}>
               <Text
                 style={[
                   styles.text_comment_avatar_name,
@@ -50,7 +97,7 @@ const ArticleCard = (props) => {
               </Text>
             </View>
           </View>
-          <View style={styles.avatar_part}>
+          <View style={styles.comment_section}>
             <Avatar.Image
               size={50}
               source={{
@@ -74,7 +121,7 @@ const ArticleCard = (props) => {
               </Text>
             </View>
           </View>
-          <View style={styles.avatar_part}>
+          <View style={styles.comment_section}>
             <Avatar.Image
               size={50}
               source={{
@@ -98,7 +145,7 @@ const ArticleCard = (props) => {
               </Text>
             </View>
           </View>
-          <View style={styles.avatar_part}>
+          <View style={styles.comment_section}>
             <Avatar.Image size={50} source={{ uri: props.avatar }} />
             <View style={styles.comment_txt}>
               <Text
@@ -116,7 +163,7 @@ const ArticleCard = (props) => {
               </Text>
             </View>
           </View>
-          <View style={styles.avatar_part}>
+          <View style={styles.comment_section}>
             <Avatar.Image
               size={50}
               source={{
@@ -225,6 +272,19 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 5,
     borderColor: "gainsboro",
+  },
+  textInput: {
+    flex: 1,
+    marginTop: Platform.OS === "ios" ? 0 : -12,
+    paddingLeft: 10,
+    color: "slategray",
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
   },
 });
 

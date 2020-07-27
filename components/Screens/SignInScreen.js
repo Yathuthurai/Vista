@@ -146,7 +146,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
         <View style={styles.homebtn}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <FontAwesome name="home" color="dodgerblue" size={50} />
+            <Text style={styles.back_txt}>Back</Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>
@@ -254,5 +254,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 120,
+  },
+  back_txt: {
+    paddingVertical: 25,
+    color: "dodgerblue",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });

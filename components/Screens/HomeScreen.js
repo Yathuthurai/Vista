@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   View,
   Text,
@@ -18,7 +18,9 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
 import ArticleCard from "../shared/ArticleCard";
-import { useSelector } from "react-redux";
+import { setArticles } from "../Store/Actions/articles";
+
+import { useSelector, useDispatch } from "react-redux";
 
 const HomeScreen = ({ navigation }) => {
   const article_data = useSelector((state) => state.article.allPosts);
@@ -26,6 +28,16 @@ const HomeScreen = ({ navigation }) => {
   const clickHandler = (id) => {
     navigation.navigate("ArticleCardFullView", { id });
   };
+
+  const dispatch = useDispatch();
+
+  const loadArticles = useCallback(() => {
+    dispatch(setArticles());
+  }, [dispatch]);
+
+  useEffect(() => {
+    loadArticles();
+  }, [loadArticles]);
 
   return (
     <View style={styles.container}>

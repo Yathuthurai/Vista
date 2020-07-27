@@ -1,5 +1,15 @@
 class ArticlePost {
-  constructor(id, avatar, owner, moment, title, imgUrl, description) {
+  constructor(
+    id,
+    avatar,
+    owner,
+    moment,
+    title,
+    imgUrl,
+    description,
+    ownerId,
+    referenceLink
+  ) {
     this.id = id;
     this.avatar = avatar;
     this.owner = owner;
@@ -7,6 +17,8 @@ class ArticlePost {
     this.title = title;
     this.imgUrl = imgUrl;
     this.description = description;
+    this.ownerId = ownerId;
+    this.referenceLink = referenceLink;
   }
 }
 

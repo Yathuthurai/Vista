@@ -4,6 +4,7 @@ import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
+import moment from "moment";
 
 const ArticleCard = (props) => {
   return (
@@ -13,7 +14,9 @@ const ArticleCard = (props) => {
           <Avatar.Image size={50} source={{ uri: props.avatar }} />
           <View style={styles.avatar_txt}>
             <Text style={styles.text_avatar_name}>{props.name}</Text>
-            <Text style={styles.text_avatar_moment}>{props.time}</Text>
+            <Text style={styles.text_avatar_moment}>
+              {moment(props.time).fromNow()}
+            </Text>
           </View>
         </View>
         <TouchableOpacity onPress={props.clickHandler}>

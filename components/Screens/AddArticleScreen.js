@@ -18,6 +18,8 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
 import { Divider } from "react-native-paper";
+import { postArtricles } from "../Store/Actions/articles";
+import { useDispatch } from "react-redux";
 //import TextInputArticle from "../shared/TextInputArticle";
 
 const AddArticleScreen = ({ navigation }) => {
@@ -25,6 +27,24 @@ const AddArticleScreen = ({ navigation }) => {
   const [text2, setText2] = React.useState("");
   const [text3, setText3] = React.useState("");
   const [text4, setText4] = React.useState("");
+
+  const [formError, setFormError] = React.useState("");
+
+  const dispatch = useDispatch();
+
+  const postHandler = () => {
+    if (
+      text1.trim().length === 0 ||
+      text2.trim().length === 0 ||
+      text3.trim().length === 0
+    ) {
+      setFormError("Check your inputs");
+      Alert.alert("Error", "Check your inputs...", [{ text: "OK" }]);
+      return;
+    }
+    dispatch(postArtricles(text1, text2, text3, text4));
+  };
+
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
@@ -53,7 +73,7 @@ const AddArticleScreen = ({ navigation }) => {
               placeholder="Article title"
               autoCapitalize="none"
               style={styles.textInput}
-              onChangeText={(text1) => setText4(text1)}
+              onChangeText={(text1) => setText1(text1)}
             />
           </View>
           <Text style={[styles.text_footer, { marginTop: 30 }]}>
@@ -65,7 +85,7 @@ const AddArticleScreen = ({ navigation }) => {
               placeholder="Image url"
               autoCapitalize="none"
               style={styles.textInput}
-              onChangeText={(text2) => setText4(text2)}
+              onChangeText={(text2) => setText2(text2)}
             />
           </View>
           <Text style={[styles.text_footer, { marginTop: 30 }]}>
@@ -77,7 +97,7 @@ const AddArticleScreen = ({ navigation }) => {
               placeholder="Article content"
               autoCapitalize="none"
               style={styles.textInput}
-              onChangeText={(text3) => setText4(text3)}
+              onChangeText={(text3) => setText3(text3)}
               multiline
             />
           </View>
@@ -98,7 +118,7 @@ const AddArticleScreen = ({ navigation }) => {
               style={styles.button_go}
               onPress={() =>
                 Alert.alert("Confirm", "Are you going to post this Article ?", [
-                  { text: "Post", onPress: () => navigation.navigate("Home") },
+                  { text: "Post", onPress: () => postHandler() },
                   { text: "Cancel" },
                 ])
               }

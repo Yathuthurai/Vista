@@ -101,7 +101,7 @@ const SignUpScreen = ({ navigation }) => {
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
-          <FontAwesome name="user-o" color="#05375a" size={20} />
+          <FontAwesome name="envelope" color="#05375a" size={17} />
           <TextInput
             placeholder="Your Email"
             autoCapitalize="none"
@@ -114,7 +114,17 @@ const SignUpScreen = ({ navigation }) => {
             </Animatable.View>
           ) : null}
         </View>
-        <Text style={[styles.text_footer, { marginTop: 35 }]}>Password</Text>
+        <Text style={[styles.text_footer, { marginTop: 30 }]}>User Name</Text>
+        <View style={styles.action}>
+          <FontAwesome name="user" color="#05375a" size={20} />
+          <TextInput
+            placeholder="Your user name"
+            autoCapitalize="none"
+            style={styles.textInput}
+            onChangeText={(val) => textInputChange(val)}
+          />
+        </View>
+        <Text style={[styles.text_footer, { marginTop: 30 }]}>Password</Text>
         <View style={styles.action}>
           <FontAwesome name="lock" color="#05375a" size={20} />
           <TextInput
@@ -132,7 +142,7 @@ const SignUpScreen = ({ navigation }) => {
             )}
           </TouchableOpacity>
         </View>
-        <Text style={[styles.text_footer, { marginTop: 35 }]}>
+        <Text style={[styles.text_footer, { marginTop: 30 }]}>
           Confirm Password
         </Text>
         <View style={styles.action}>

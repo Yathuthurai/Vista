@@ -29,6 +29,118 @@ const ArticleCard = (props) => {
         </TouchableOpacity>
         <View style={styles.line_avatar} />
         <Text style={{ textAlign: "justify" }}>{props.description}</Text>
+        <View style={styles.line_avatar} />
+        <View style={{ paddingHorizontal: 8 }}>
+          <View style={styles.comment_section}>
+            <Avatar.Image size={50} source={{ uri: props.avatar }} />
+            <View style={styles.comment_txt}>
+              <Text
+                style={[
+                  styles.text_comment_avatar_name,
+                  { paddingHorizontal: 7 },
+                ]}
+              >
+                Mr Bean
+              </Text>
+              <Text
+                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
+              >
+                Thank you for sharing this artcile Thank you for sharing this
+                sharing this artcile and cool 😊
+              </Text>
+            </View>
+          </View>
+          <View style={styles.avatar_part}>
+            <Avatar.Image
+              size={50}
+              source={{
+                uri:
+                  "https://i1.sndcdn.com/avatars-000001694032-utrffl-t500x500.jpg",
+              }}
+            />
+            <View style={styles.comment_txt}>
+              <Text
+                style={[
+                  styles.text_comment_avatar_name,
+                  { paddingHorizontal: 7 },
+                ]}
+              >
+                Mr Vadivelu
+              </Text>
+              <Text
+                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
+              >
+                Ippa naa enna solrathu
+              </Text>
+            </View>
+          </View>
+          <View style={styles.avatar_part}>
+            <Avatar.Image
+              size={50}
+              source={{
+                uri:
+                  "https://lh3.googleusercontent.com/proxy/3TxK8CjVz4VMp-d0Jg6mBHNwiQnAtC8-PlIYmg_lF1VKcoT-qDbg46L9679WRoZhdxDbOg1TSuu9rgrhe-GcHENKevL3FlYiC_KU0XdJWIJ2kgISnS7bUHxugkGkkXPhKUkahCb9tp_JcpsND1Z0Qns",
+              }}
+            />
+            <View style={styles.comment_txt}>
+              <Text
+                style={[
+                  styles.text_comment_avatar_name,
+                  { paddingHorizontal: 7 },
+                ]}
+              >
+                Mr Vivek
+              </Text>
+              <Text
+                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
+              >
+                Ivanukala ellaam paaththa rompa nallavunka maari theriyalaye
+              </Text>
+            </View>
+          </View>
+          <View style={styles.avatar_part}>
+            <Avatar.Image size={50} source={{ uri: props.avatar }} />
+            <View style={styles.comment_txt}>
+              <Text
+                style={[
+                  styles.text_comment_avatar_name,
+                  { paddingHorizontal: 7 },
+                ]}
+              >
+                Mr Bean
+              </Text>
+              <Text
+                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
+              >
+                Thank you for sharing this artcile
+              </Text>
+            </View>
+          </View>
+          <View style={styles.avatar_part}>
+            <Avatar.Image
+              size={50}
+              source={{
+                uri:
+                  "https://sourcefb.com/assets/memes/picture/senthil-photos-pictures-stills.jpg",
+              }}
+            />
+            <View style={styles.comment_txt}>
+              <Text
+                style={[
+                  styles.text_comment_avatar_name,
+                  { paddingHorizontal: 7 },
+                ]}
+              >
+                Mr Bean
+              </Text>
+              <Text
+                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
+              >
+                Thank you for sharing this artcile
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
@@ -71,18 +183,41 @@ const styles = StyleSheet.create({
     borderBottomColor: "#f2f2f2",
     paddingBottom: 5,
   },
+  comment_section: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
+  },
   avatar_txt: {
     marginLeft: 10,
     marginTop: 5,
+  },
+  comment_txt: {
+    marginLeft: 10,
+    marginTop: 5,
+    backgroundColor: "white",
+    borderRadius: 10,
+    width: "80%",
   },
   text_avatar_name: {
     color: "dimgrey",
     fontSize: 18,
     fontWeight: "bold",
   },
+  text_comment_avatar_name: {
+    color: "dimgrey",
+    fontSize: 16,
+    fontWeight: "700",
+  },
   text_avatar_moment: {
     fontSize: 14,
     color: "grey",
+  },
+  text_comment_moment: {
+    fontSize: 14,
+    color: "black",
   },
   line_avatar: {
     borderWidth: 1,

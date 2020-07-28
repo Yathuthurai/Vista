@@ -19,6 +19,7 @@ import FavouritesScreen from "./components/Screens/FavouritesScreen";
 import AddArticleScreen from "./components/Screens/AddArticleScreen";
 import ArticleReducer from "./components/Store/Reducers/Articles";
 import ArticleFullView from "./components/Screens/ArticleFullView";
+import MyPostsScreen from "./components/Screens/MyPostsScreen";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App() {
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="MyPosts" component={MyPostsScreen} />
           <Stack.Screen name="EditProfile" component={EditProfileScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen

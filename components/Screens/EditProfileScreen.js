@@ -23,49 +23,13 @@ const Profile = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.goback_btn}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={styles.gobackButtonTitle}>Back</Text>
+      </TouchableOpacity>
       <View style={{ alignItems: "center" }}>
-        {/* <TouchableOpacity>
-          <View
-            style={{
-              height: 100,
-              width: 100,
-              borderRadius: 15,
-              justifyContent: "center",
-              alignItems: "center",
-              paddingTop: 80,
-            }}
-          >
-            <ImageBackground
-              source={{
-                uri: image,
-              }}
-              style={{ height: 100, width: 100 }}
-              imageStyle={{ borderRadius: 15 }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Icon
-                  name="camera"
-                  size={35}
-                  color="#fff"
-                  style={{
-                    opacity: 0.7,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderWidth: 1,
-                    borderColor: "#fff",
-                    borderRadius: 10,
-                  }}
-                />
-              </View>
-            </ImageBackground>
-          </View>
-        </TouchableOpacity> */}
         <View style={{ paddingTop: 70, alignItems: "center" }}>
           <Avatar.Image
             size={200}
@@ -145,10 +109,10 @@ const Profile = ({ navigation }) => {
           <Text style={styles.panelButtonTitle}>Submit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.goback_btn}
-          onPress={() => navigation.goBack()}
+          style={styles.myPost_btn}
+          onPress={() => navigation.navigate("MyPosts")}
         >
-          <Text style={styles.gobackButtonTitle}>Back</Text>
+          <Text style={styles.gobackButtonTitle}>My Posts</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -224,14 +188,27 @@ const styles = StyleSheet.create({
   goback_btn: {
     padding: 11,
     borderRadius: 50,
+    alignItems: "flex-start",
+    marginVertical: 1,
+  },
+  myPost_btn: {
+    padding: 11,
+    borderRadius: 50,
     alignItems: "center",
-    marginVertical: 7,
+    marginVertical: 1,
   },
   panelButtonTitle: {
     fontSize: 17,
     fontWeight: "bold",
     color: "white",
   },
+
+  myPost_text: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "white",
+  },
+
   gobackButtonTitle: {
     fontSize: 17,
     fontWeight: "bold",
@@ -259,3 +236,48 @@ const styles = StyleSheet.create({
     color: "#05375a",
   },
 });
+
+{
+  /* <TouchableOpacity>
+          <View
+            style={{
+              height: 100,
+              width: 100,
+              borderRadius: 15,
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: 80,
+            }}
+          >
+            <ImageBackground
+              source={{
+                uri: image,
+              }}
+              style={{ height: 100, width: 100 }}
+              imageStyle={{ borderRadius: 15 }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Icon
+                  name="camera"
+                  size={35}
+                  color="#fff"
+                  style={{
+                    opacity: 0.7,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderWidth: 1,
+                    borderColor: "#fff",
+                    borderRadius: 10,
+                  }}
+                />
+              </View>
+            </ImageBackground>
+          </View>
+        </TouchableOpacity> */
+}

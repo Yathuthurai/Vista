@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
 import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -18,6 +25,35 @@ const ArticleCard = (props) => {
               {moment(props.time).fromNow()}
             </Text>
           </View>
+          {props.editable ? (
+            <View
+              style={{
+                flexDirection: "row",
+                paddingVertical: 12,
+                width: "60%",
+              }}
+            >
+              <TouchableOpacity>
+                <FontAwesome
+                  style={{ paddingHorizontal: 80 }}
+                  name="edit"
+                  color="grey"
+                  size={23}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  Alert.alert(
+                    "Confirm",
+                    "Are you going to delete this Article ?",
+                    [{ text: "Delete" }, { text: "Cancel" }]
+                  )
+                }
+              >
+                <FontAwesome name="trash" color="grey" size={23} />
+              </TouchableOpacity>
+            </View>
+          ) : null}
         </View>
         <TouchableOpacity onPress={props.clickHandler}>
           <Text style={styles.title}>{props.title}</Text>
@@ -63,6 +99,7 @@ const styles = StyleSheet.create({
   avatar_part: {
     flexDirection: "row",
     marginTop: 10,
+    width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "#f2f2f2",
     paddingBottom: 5,

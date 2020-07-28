@@ -24,7 +24,7 @@ const ProfileScreen = ({ navigation }) => {
         <Text style={styles.text_header}>
           Welcome to{" "}
           <Text style={{ color: "#ffd700", fontStyle: "italic" }}>
-            LankaTutor!
+            ArticleCenter!
           </Text>
         </Text>
       </View>

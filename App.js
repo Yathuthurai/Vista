@@ -20,6 +20,7 @@ import AddArticleScreen from "./components/Screens/AddArticleScreen";
 import ArticleReducer from "./components/Store/Reducers/Articles";
 import ArticleFullView from "./components/Screens/ArticleFullView";
 import MyPostsScreen from "./components/Screens/MyPostsScreen";
+import UpdateScreen from "./components/Screens/UpdateScreen";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ export default function App() {
             name="ArticleCardFullView"
             component={ArticleFullView}
           />
+          <Stack.Screen name="UpdateArticle" component={UpdateScreen} />
           <Stack.Screen name="Add" component={AddArticleScreen} />
           <Stack.Screen name="Favourites" component={FavouritesScreen} />
           <Stack.Screen name="Registered" component={RegisteredScreen} />

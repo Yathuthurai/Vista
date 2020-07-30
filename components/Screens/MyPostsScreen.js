@@ -32,6 +32,10 @@ const MyPostsScreen = ({ navigation }) => {
     navigation.navigate("ArticleCardFullView", { id });
   };
 
+  const updateHandler = () => {
+    navigation.navigate("UpdateArticle");
+  };
+
   const dispatch = useDispatch();
 
   const loadArticles = useCallback(() => {
@@ -56,6 +60,7 @@ const MyPostsScreen = ({ navigation }) => {
           renderItem={({ item }) => (
             <ArticleCard
               clickHandler={() => clickHandler(item.id)}
+              updateHandler={() => updateHandler()}
               avatar={item.avatar}
               name={item.owner}
               time={item.moment}

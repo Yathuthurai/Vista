@@ -33,7 +33,7 @@ const ArticleCard = (props) => {
                 width: "60%",
               }}
             >
-              <TouchableOpacity>
+              <TouchableOpacity onPress={props.updateHandler}>
                 <FontAwesome
                   style={{ paddingHorizontal: 80 }}
                   name="edit"
@@ -134,4 +134,8 @@ const styles = StyleSheet.create({
             <FontAwesome style={styles.star_icon} name="star" size={25} />
           </TouchableOpacity>
         </View>
+*/
+
+/*
+onPress={() => navigation.navigate("Profile")}
 */

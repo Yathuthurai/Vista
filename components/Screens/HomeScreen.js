@@ -42,7 +42,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
           <FontAwesome name="user" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>

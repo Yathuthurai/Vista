@@ -47,21 +47,12 @@ const AddArticleScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-          <FontAwesome name="user" color="dodgerblue" size={33} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <FontAwesome name="home" color="dodgerblue" size={33} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
-          <FontAwesome name="star" color="dodgerblue" size={33} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Add")}>
-          <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
-        </TouchableOpacity>
-      </Animatable.View>
-
+      <TouchableOpacity
+        style={styles.goback_btn}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={styles.gobackButtonTitle}>Back</Text>
+      </TouchableOpacity>
       <View style={styles.add_article_container}>
         <ScrollView>
           <Text style={[styles.text_footer, { marginTop: 30 }]}>
@@ -117,13 +108,14 @@ const AddArticleScreen = ({ navigation }) => {
             <TouchableOpacity
               style={styles.button_go}
               onPress={() =>
-                Alert.alert("Confirm", "Are you going to post this Article ?", [
-                  { text: "Post", onPress: () => postHandler() },
-                  { text: "Cancel" },
-                ])
+                Alert.alert(
+                  "Confirm",
+                  "Are you going to update this Article ?",
+                  [{ text: "Update" }, { text: "Cancel" }]
+                )
               }
             >
-              <Text style={styles.goBtntxt}>POST</Text>
+              <Text style={styles.goBtntxt}>UPDATE</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -141,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 20,
     paddingBottom: 50,
-    paddingTop: 50,
+    paddingTop: 15,
   },
   btn_group_container: {
     paddingTop: 2,
@@ -151,7 +143,7 @@ const styles = StyleSheet.create({
     width: "75%",
   },
   add_article_container: {
-    paddingTop: 20,
+    paddingTop: 5,
   },
   textInput: {
     marginTop: Platform.OS === "ios" ? 0 : -12,
@@ -197,6 +189,17 @@ const styles = StyleSheet.create({
   text_footer: {
     color: "#05375a",
     fontSize: 18,
+  },
+  goback_btn: {
+    padding: 11,
+    borderRadius: 50,
+    alignItems: "flex-start",
+    marginVertical: 1,
+  },
+  gobackButtonTitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "dodgerblue",
   },
 });
 

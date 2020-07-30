@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: "whitesmoke",
     justifyContent: "flex-start",
     paddingHorizontal: 20,
-    paddingBottom: 50,
+    paddingBottom: 5,
     paddingTop: 50,
   },
   btn_group_container: {

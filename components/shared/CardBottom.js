@@ -5,6 +5,16 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const ArticleCard = () => {
+  const [data, setData] = React.useState({
+    isFavorite: false,
+  });
+
+  const favoriteAdd = () => {
+    setData({
+      ...data,
+      isFavorite: !data.isFavorite,
+    });
+  };
   return (
     <View style={styles.bottomRow}>
       <View style={styles.sourceContainer}>
@@ -12,8 +22,12 @@ const ArticleCard = () => {
         <TouchableOpacity>
           <Text style={styles.comment_text}>Comment</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <FontAwesome style={styles.star_icon} name="star" size={25} />
+        <TouchableOpacity onPress={favoriteAdd}>
+          {data.isFavorite ? (
+            <FontAwesome style={styles.starFav_icon} name="star" size={25} />
+          ) : (
+            <FontAwesome style={styles.star_icon} name="star" size={25} />
+          )}
         </TouchableOpacity>
       </View>
     </View>
@@ -38,6 +52,11 @@ const styles = StyleSheet.create({
   },
   star_icon: {
     color: "grey",
+    paddingTop: 10,
+    paddingHorizontal: 15,
+  },
+  starFav_icon: {
+    color: "dodgerblue",
     paddingTop: 10,
     paddingHorizontal: 15,
   },

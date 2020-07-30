@@ -75,7 +75,11 @@ export default MyPostsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
+    backgroundColor: "whitesmoke",
+    justifyContent: "flex-start",
+    paddingHorizontal: 20,
+    paddingBottom: 50,
+    paddingTop: 10,
   },
   goback_btn: {
     padding: 11,

@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Alert,
 } from "react-native";
-import { Avatar } from "react-native-paper";
+import { Avatar, Divider } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
@@ -60,7 +60,8 @@ const ArticleCard = (props) => {
           <Image source={{ uri: props.image }} style={styles.card} />
         </TouchableOpacity>
         <CardBottom />
-        <View style={styles.line_avatar} />
+        <Divider style={styles.line} />
+        {/*<View style={styles.line_avatar} />*/}
       </View>
     </View>
   );
@@ -117,12 +118,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "grey",
   },
-  line_avatar: {
-    borderWidth: 1,
-    width: 300,
-    marginLeft: 20,
+  line: {
     marginTop: 5,
-    borderColor: "gainsboro",
+    height: 1,
   },
 });
 

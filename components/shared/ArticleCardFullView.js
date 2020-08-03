@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Linking,
 } from "react-native";
 import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
@@ -54,6 +55,13 @@ const ArticleCard = (props) => {
         </TouchableOpacity>
         <View style={styles.line_avatar} />
         <Text style={{ textAlign: "justify" }}>{props.description}</Text>
+        <Text style={{ textAlign: "justify" }}>References: </Text>
+        <Text
+          onPress={() => Linking.openURL(props.referenceLink)}
+          style={{ textAlign: "justify", color: "dodgerblue" }}
+        >
+          {props.referenceLink}
+        </Text>
         <View style={styles.line_avatar} />
         <View style={{ paddingHorizontal: 8 }}>
           <View style={styles.comment_section}>

@@ -26,14 +26,14 @@ const MyPostsScreen = ({ navigation }) => {
   );
   const { colors } = useTheme();
 
-  const article_data = useSelector((state) => state.article.allPosts);
+  const article_data = useSelector((state) => state.article.myPosts);
 
   const clickHandler = (id) => {
     navigation.navigate("ArticleCardFullView", { id });
   };
 
-  const updateHandler = () => {
-    navigation.navigate("UpdateArticle");
+  const updateHandler = (id) => {
+    navigation.navigate("UpdateArticle", { id });
   };
 
   const dispatch = useDispatch();
@@ -60,13 +60,14 @@ const MyPostsScreen = ({ navigation }) => {
           renderItem={({ item }) => (
             <ArticleCard
               clickHandler={() => clickHandler(item.id)}
-              updateHandler={() => updateHandler()}
+              updateHandler={() => updateHandler(item.id)}
               avatar={item.avatar}
               name={item.owner}
               time={item.moment}
               title={item.title}
               image={item.imgUrl}
               editable={true}
+              id={item.id}
             />
           )}
         />

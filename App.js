@@ -1,4 +1,8 @@
 import React from "react";
+
+import { firebaseConfig } from "./firebase";
+import * as firebase from "firebase";
+
 import { StyleSheet, Text, View, Button } from "react-native";
 import WelcomeScreen from "./components/Screens/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -21,10 +25,18 @@ import ArticleReducer from "./components/Store/Reducers/Articles";
 import ArticleFullView from "./components/Screens/ArticleFullView";
 import MyPostsScreen from "./components/Screens/MyPostsScreen";
 import UpdateScreen from "./components/Screens/UpdateScreen";
+import AuthReducer from "./components/Store/Reducers/auth";
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const Stack = createStackNavigator();
 
-const rootReducer = combineReducers({ article: ArticleReducer });
+const rootReducer = combineReducers({
+  article: ArticleReducer,
+  auth: AuthReducer,
+});
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 export default function App() {

@@ -9,6 +9,7 @@ import {
   StatusBar,
   Alert,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 
 import * as Animatable from "react-native-animatable";
@@ -25,13 +26,19 @@ const SignUpScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
     check_textInputChange: false,
     secureTextEntry: true,
     error: null,
+    emailError: null,
+    firstNameError: null,
+    lastNameError: null,
+    passwordError: null,
     isLoading: false,
   });
 
-  const textInputChange = (val) => {
+  const emailInputChange = (val) => {
     if (val.length >= 0) {
       setData({
         ...data,
@@ -45,6 +52,20 @@ const SignUpScreen = ({ navigation }) => {
         check_textInputChange: true,
       });
     }
+  };
+
+  const firstNameInputChange = (val) => {
+    setData({
+      ...data,
+      firstName: val,
+    });
+  };
+
+  const lastNameInputChange = (val) => {
+    setData({
+      ...data,
+      lastName: val,
+    });
   };
 
   const handlePasswordChange = (val) => {
@@ -70,7 +91,9 @@ const SignUpScreen = ({ navigation }) => {
       isLoading: true,
     });
     try {
-      await dispatch(signUp(data.email, data.password));
+      await dispatch(
+        signUp(data.email, data.firstName, data.lastName, data.password)
+      );
       navigation.navigate("Profile");
     } catch (e) {
       setData({
@@ -106,7 +129,7 @@ const SignUpScreen = ({ navigation }) => {
             placeholder="Your Email"
             autoCapitalize="none"
             style={styles.textInput}
-            onChangeText={(val) => textInputChange(val)}
+            onChangeText={(val) => emailInputChange(val)}
           />
           {data.check_textInputChange ? (
             <Animatable.View animation="bounceIn">
@@ -114,17 +137,27 @@ const SignUpScreen = ({ navigation }) => {
             </Animatable.View>
           ) : null}
         </View>
-        <Text style={[styles.text_footer, { marginTop: 30 }]}>User Name</Text>
+        <Text style={[styles.text_footer, { marginTop: 20 }]}>First Name</Text>
         <View style={styles.action}>
           <FontAwesome name="user" color="#05375a" size={20} />
           <TextInput
             placeholder="Your user name"
             autoCapitalize="none"
             style={styles.textInput}
-            onChangeText={(val) => textInputChange(val)}
+            onChangeText={(val) => firstNameInputChange(val)}
           />
         </View>
-        <Text style={[styles.text_footer, { marginTop: 30 }]}>Password</Text>
+        <Text style={[styles.text_footer, { marginTop: 20 }]}>Last Name</Text>
+        <View style={styles.action}>
+          <FontAwesome name="user" color="#05375a" size={20} />
+          <TextInput
+            placeholder="Your user name"
+            autoCapitalize="none"
+            style={styles.textInput}
+            onChangeText={(val) => lastNameInputChange(val)}
+          />
+        </View>
+        <Text style={[styles.text_footer, { marginTop: 20 }]}>Password</Text>
         <View style={styles.action}>
           <FontAwesome name="lock" color="#05375a" size={20} />
           <TextInput
@@ -142,7 +175,7 @@ const SignUpScreen = ({ navigation }) => {
             )}
           </TouchableOpacity>
         </View>
-        <Text style={[styles.text_footer, { marginTop: 30 }]}>
+        <Text style={[styles.text_footer, { marginTop: 20 }]}>
           Confirm Password
         </Text>
         <View style={styles.action}>
@@ -240,7 +273,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: "row",
     backgroundColor: "dodgerblue",
-    marginTop: 50,
+    marginTop: 40,
   },
   signIn: {
     width: "100%",

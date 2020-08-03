@@ -20,7 +20,7 @@ const ArticleFullView = ({ navigation, route }) => {
   const article = useSelector((state) =>
     state.article.allPosts.find((article) => article.id === articleId)
   );
-  console.log(article);
+  //console.log(article);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -33,6 +33,7 @@ const ArticleFullView = ({ navigation, route }) => {
         title={article.title}
         image={article.imgUrl}
         description={article.description}
+        referenceLink={article.referenceLink}
       />
     </View>
   );

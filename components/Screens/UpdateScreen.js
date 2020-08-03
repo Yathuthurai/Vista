@@ -18,21 +18,26 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
 import { Divider } from "react-native-paper";
-import { postArtricles } from "../Store/Actions/articles";
-import { useDispatch } from "react-redux";
+import { updateArtricles } from "../Store/Actions/articles";
+import { useDispatch, useSelector } from "react-redux";
 //import TextInputArticle from "../shared/TextInputArticle";
 
-const AddArticleScreen = ({ navigation }) => {
-  const [text1, setText1] = React.useState("");
-  const [text2, setText2] = React.useState("");
-  const [text3, setText3] = React.useState("");
-  const [text4, setText4] = React.useState("");
+const AddArticleScreen = ({ navigation, route }) => {
+  const id = route.params.id;
+  const article = useSelector((state) =>
+    state.article.allPosts.find((post) => post.id === id)
+  );
+
+  const [text1, setText1] = React.useState(article.title);
+  const [text2, setText2] = React.useState(article.imgUrl);
+  const [text3, setText3] = React.useState(article.description);
+  const [text4, setText4] = React.useState(article.referenceLink);
 
   const [formError, setFormError] = React.useState("");
 
   const dispatch = useDispatch();
 
-  const postHandler = () => {
+  const updateHandler = () => {
     if (
       text1.trim().length === 0 ||
       text2.trim().length === 0 ||
@@ -42,7 +47,7 @@ const AddArticleScreen = ({ navigation }) => {
       Alert.alert("Error", "Check your inputs...", [{ text: "OK" }]);
       return;
     }
-    dispatch(postArtricles(text1, text2, text3, text4));
+    dispatch(updateArtricles(id, text1, text2, text3, text4));
   };
 
   return (
@@ -61,6 +66,7 @@ const AddArticleScreen = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name="bookmark" color="#05375a" size={20} />
             <TextInput
+              value={text1}
               placeholder="Article title"
               autoCapitalize="none"
               style={styles.textInput}
@@ -73,6 +79,7 @@ const AddArticleScreen = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name="image" color="#05375a" size={17} />
             <TextInput
+              value={text2}
               placeholder="Image url"
               autoCapitalize="none"
               style={styles.textInput}
@@ -85,6 +92,7 @@ const AddArticleScreen = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name="book" color="#05375a" size={20} />
             <TextInput
+              value={text3}
               placeholder="Article content"
               autoCapitalize="none"
               style={styles.textInput}
@@ -98,6 +106,7 @@ const AddArticleScreen = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name="link" color="#05375a" size={20} />
             <TextInput
+              value={text4}
               placeholder="References"
               autoCapitalize="none"
               style={styles.textInput}
@@ -111,7 +120,10 @@ const AddArticleScreen = ({ navigation }) => {
                 Alert.alert(
                   "Confirm",
                   "Are you going to update this Article ?",
-                  [{ text: "Update" }, { text: "Cancel" }]
+                  [
+                    { text: "Update", onPress: updateHandler },
+                    { text: "Cancel" },
+                  ]
                 )
               }
             >

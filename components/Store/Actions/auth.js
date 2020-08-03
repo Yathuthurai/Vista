@@ -1,63 +1,68 @@
+import * as firebase from "firebase";
+
 export const SIGNUP = "SIGNUP";
 
 export const LOGIN = "LOGIN";
 
-export const signUp = (email, password) => {
+export const signUp = (email, firstName, lastName, password) => {
   return async (dispatch) => {
-    const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDu-C0RS54RvnNvovF5v47G8Wts251JNTY",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          returnSecureToken: true,
-        }),
-      }
-    );
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      const errorId = errorData.error.message;
-      let message = "Something went wrong!";
-      if (errorId === "EMAIL_EXISTS") {
-        message = "This email address already exists!";
+      const userId = firebase.auth().currentUser.uid;
+      const token = await firebase.auth().currentUser.getIdToken();
+
+      await firebase
+        .database()
+        .ref(`users/${userId}`)
+        .set({ firstName, lastName, email });
+
+      dispatch({
+        type: SIGNUP,
+        email,
+        firstName,
+        lastName,
+        token,
+        userId,
+      });
+    } catch (e) {
+      if (e.code === "auth/email-already-in-use") {
+        throw new Error("Email address already in use");
       }
-      throw new Error(message);
+      throw e;
     }
-
-    const responseData = await response.json();
-    console.log(responseData);
   };
 };
 
 export const logIn = (email, password) => {
   return async (dispatch) => {
-    const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDu-C0RS54RvnNvovF5v47G8Wts251JNTY",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          returnSecureToken: true,
-        }),
-      }
-    );
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      const errorId = errorData.error.message;
-      let message = "Something went wrong!";
-      if (errorId === "EMAIL_NOT_FOUND" || errorId === "INVALID_PASSWORD") {
-        message = "Invalid email address or password!";
+      const userId = firebase.auth().currentUser.uid;
+      const token = await firebase.auth().currentUser.getIdToken();
+
+      const user = await firebase
+        .database()
+        .ref(`users/${userId}`)
+        .once("value");
+
+      dispatch({
+        type: LOGIN,
+        email,
+        firstName: user.val().firstName,
+        lastName: user.val().lastName,
+        token,
+        userId,
+      });
+    } catch (e) {
+      if (
+        e.code === "auth/user-not-found" ||
+        e.code === "auth/wrong-password"
+      ) {
+        throw new Error("Incorrect email or password");
       }
-      throw new Error(message);
+      throw e;
     }
-
-    const responseData = await response.json();
-    console.log(responseData);
   };
 };

@@ -12,46 +12,57 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
 import moment from "moment";
+import { deleteArtricles } from "../Store/Actions/articles";
+import { useDispatch } from "react-redux";
 
 const ArticleCard = (props) => {
+  const dispatch = useDispatch();
+  const deleteHandler = (id) => {
+    dispatch(deleteArtricles(id));
+  };
   return (
     <View>
       <View style={styles.article_card}>
         <View style={styles.avatar_part}>
-          <Avatar.Image size={50} source={{ uri: props.avatar }} />
-          <View style={styles.avatar_txt}>
-            <Text style={styles.text_avatar_name}>{props.name}</Text>
-            <Text style={styles.text_avatar_moment}>
-              {moment(props.time).fromNow()}
-            </Text>
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <Avatar.Image size={50} source={{ uri: props.avatar }} />
+            <View style={styles.avatar_txt}>
+              <Text style={styles.text_avatar_name}>{props.name}</Text>
+              <Text style={styles.text_avatar_moment}>
+                {moment(props.time).fromNow()}
+              </Text>
+            </View>
           </View>
           {props.editable ? (
-            <View
-              style={{
-                flexDirection: "row",
-                paddingVertical: 12,
-                width: "60%",
-              }}
-            >
-              <TouchableOpacity onPress={props.updateHandler}>
-                <FontAwesome
-                  style={{ paddingHorizontal: 80 }}
-                  name="edit"
-                  color="grey"
-                  size={23}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  Alert.alert(
-                    "Confirm",
-                    "Are you going to delete this Article ?",
-                    [{ text: "Delete" }, { text: "Cancel" }]
-                  )
-                }
+            <View style={{ justifyContent: "flex-end" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  paddingVertical: 12,
+                }}
               >
-                <FontAwesome name="trash" color="grey" size={23} />
-              </TouchableOpacity>
+                <TouchableOpacity onPress={props.updateHandler}>
+                  <FontAwesome name="edit" color="grey" size={23} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ paddingHorizontal: 20 }}
+                  onPress={() =>
+                    Alert.alert(
+                      "Confirm",
+                      "Are you going to delete this Article ?",
+                      [
+                        {
+                          text: "Delete",
+                          onPress: () => deleteHandler(props.id),
+                        },
+                        { text: "Cancel" },
+                      ]
+                    )
+                  }
+                >
+                  <FontAwesome name="trash" color="grey" size={23} />
+                </TouchableOpacity>
+              </View>
             </View>
           ) : null}
         </View>
@@ -98,6 +109,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   avatar_part: {
+    flex: 1,
     flexDirection: "row",
     marginTop: 10,
     width: "100%",

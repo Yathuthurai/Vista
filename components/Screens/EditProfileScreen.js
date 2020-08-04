@@ -13,8 +13,7 @@ import { useTheme } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import { Avatar } from "react-native-paper";
-
+import ImagePickerExample from "../shared/ImagePickerExample";
 const Profile = ({ navigation }) => {
   const [image, setImage] = useState(
     "https://api.adorable.io/avatars/80/abott@adorable.png"
@@ -30,16 +29,14 @@ const Profile = ({ navigation }) => {
         <Text style={styles.gobackButtonTitle}>Back</Text>
       </TouchableOpacity>
       <View style={{ alignItems: "center" }}>
-        <View style={{ paddingTop: 70, alignItems: "center" }}>
-          <Avatar.Image
-            size={200}
-            source={require("../../assets/profile.png")}
-          />
+        <View style={{ paddingTop: 30, alignItems: "center" }}>
+          <ImagePickerExample />
           <Text
             style={{
               marginTop: 10,
               fontSize: 18,
               fontWeight: "bold",
+              color: "dimgray",
             }}
           >
             Jack Sparrow
@@ -66,21 +63,6 @@ const Profile = ({ navigation }) => {
           <TextInput
             placeholder="Last Name"
             placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-          />
-        </View>
-        <View style={styles.action}>
-          <Feather name="phone" color={colors.text} size={20} />
-          <TextInput
-            placeholder="Phone"
-            placeholderTextColor="#666666"
-            keyboardType="number-pad"
             autoCorrect={false}
             style={[
               styles.textInput,
@@ -237,8 +219,7 @@ const styles = StyleSheet.create({
   },
 });
 
-{
-  /* <TouchableOpacity>
+/* <TouchableOpacity>
           <View
             style={{
               height: 100,
@@ -280,4 +261,20 @@ const styles = StyleSheet.create({
             </ImageBackground>
           </View>
         </TouchableOpacity> */
-}
+/*
+<View style={styles.action}>
+          <Feather name="phone" color={colors.text} size={20} />
+          <TextInput
+            placeholder="Phone"
+            placeholderTextColor="#666666"
+            keyboardType="number-pad"
+            autoCorrect={false}
+            style={[
+              styles.textInput,
+              {
+                color: colors.text,
+              },
+            ]}
+          />
+        </View>
+*/

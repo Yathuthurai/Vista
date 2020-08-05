@@ -15,12 +15,12 @@ const StartUpScreen = () => {
         return;
       }
       const transFormData = JSON.parse(userData);
-      const { token, userId, firstName, lastName } = transFormData;
-      if (!token || !userId || !firstName || !lastName) {
+      const { token, userId, firstName, lastName, email } = transFormData;
+      if (!token || !userId || !firstName || !lastName || !email) {
         dispatch(tryAutoLogin());
         return;
       }
-      dispatch(authentication(userId, token, firstName, lastName));
+      dispatch(authentication(userId, token, firstName, lastName, email));
     };
     tryLogin();
   }, []);

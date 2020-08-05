@@ -5,16 +5,16 @@ export const AUTHENTICATE = "AUTHENTICATE";
 
 export const TRYAUTOLOGIN = "TRYAUTOLOGIN";
 
+export const LOGOUT = "LOGOUT";
+
 export const tryAutoLogin = () => {
   return {
     type: TRYAUTOLOGIN,
   };
 };
 
-export const authentication = (userId, token, firstName, lastName) => {
+export const authentication = (userId, token, firstName, lastName, email) => {
   return async (dispatch) => {
-    const email = firebase.auth().currentUser.email;
-
     dispatch({
       type: AUTHENTICATE,
       email,
@@ -22,6 +22,15 @@ export const authentication = (userId, token, firstName, lastName) => {
       lastName,
       token,
       userId,
+    });
+  };
+};
+
+export const logout = () => {
+  return async (dispatch) => {
+    await AsyncStorage.removeItem("UserData");
+    dispatch({
+      type: LOGOUT,
     });
   };
 };
@@ -39,9 +48,9 @@ export const signUp = (email, firstName, lastName, password) => {
         .ref(`users/${userId}`)
         .set({ firstName, lastName, email });
 
-      saveDataToStorage(token, userId, firstName, lastName);
+      saveDataToStorage(token, userId, firstName, lastName, email);
 
-      dispatch(authentication(userId, token, firstName, lastName));
+      dispatch(authentication(userId, token, firstName, lastName, email));
     } catch (e) {
       if (e.code === "auth/email-already-in-use") {
         throw new Error("Email address already in use");
@@ -68,11 +77,18 @@ export const logIn = (email, password) => {
         token,
         userId,
         user.val().firstName,
-        user.val().lastName
+        user.val().lastName,
+        email
       );
 
       dispatch(
-        authentication(userId, token, user.val().firstName, user.val().lastName)
+        authentication(
+          userId,
+          token,
+          user.val().firstName,
+          user.val().lastName,
+          email
+        )
       );
     } catch (e) {
       if (
@@ -86,9 +102,9 @@ export const logIn = (email, password) => {
   };
 };
 
-const saveDataToStorage = (token, userId, firstName, lastName) => {
+const saveDataToStorage = (token, userId, firstName, lastName, email) => {
   AsyncStorage.setItem(
     "UserData",
-    JSON.stringify({ token, userId, firstName, lastName })
+    JSON.stringify({ token, userId, firstName, lastName, email })
   );
 };

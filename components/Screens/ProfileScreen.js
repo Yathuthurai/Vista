@@ -11,6 +11,9 @@ import {
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+
+import { logout } from "../Store/Actions/auth";
 
 import * as Animatable from "react-native-animatable";
 import LinearGradient from "react-native-linear-gradient";
@@ -18,6 +21,13 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 
 const ProfileScreen = ({ navigation }) => {
+  const firstName = useSelector((state) => state.auth.firstName);
+  const lastName = useSelector((state) => state.auth.lastName);
+  const email = useSelector((state) => state.auth.email);
+  const dispatch = useDispatch();
+  const logoutHandler = async () => {
+    await dispatch(logout());
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -34,8 +44,8 @@ const ProfileScreen = ({ navigation }) => {
             size={200}
             source={require("../../assets/profile.png")}
           />
-          <Text style={styles.text_footer1}>Thurairajah Yathurshan</Text>
-          <Text style={styles.text_footer2}>yathurshan@gmail.com</Text>
+          <Text style={styles.text_footer1}>{firstName + " " + lastName}</Text>
+          <Text style={styles.text_footer2}>{email}</Text>
         </View>
         <View style={styles.container_profile_other}>
           <TouchableOpacity
@@ -50,10 +60,7 @@ const ProfileScreen = ({ navigation }) => {
           >
             <Text style={styles.goBtntxt}>GO</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("SignIn")}
-          >
+          <TouchableOpacity onPress={logoutHandler} style={styles.button}>
             <Text style={styles.signUpBtntxt}>LOGOUT</Text>
           </TouchableOpacity>
         </View>

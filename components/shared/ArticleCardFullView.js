@@ -13,6 +13,7 @@ import { Avatar } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
+import CommentCard from "./CommentCard";
 import Feather from "react-native-vector-icons/Feather";
 import moment from "moment";
 
@@ -65,7 +66,13 @@ const ArticleCard = (props) => {
         <View style={styles.line_avatar} />
         <View style={{ paddingHorizontal: 8 }}>
           <View style={styles.comment_section}>
-            <Avatar.Image size={50} source={{ uri: props.avatar }} />
+            <Avatar.Image
+              size={50}
+              source={{
+                uri:
+                  "https://www.nicepng.com/png/full/522-5226533_get-beyond-the-usual-suspects-profile-pic-icon.png",
+              }}
+            />
             <View style={styles.comment_txt}>
               <View style={styles.action}>
                 <TextInput
@@ -89,7 +96,126 @@ const ArticleCard = (props) => {
               </View>
             </View>
           </View>
-          <View style={styles.comment_section}>
+        </View>
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+        <CommentCard />
+      </View>
+    </ScrollView>
+  );
+};
+
+export default ArticleCard;
+
+const styles = StyleSheet.create({
+  article_card: {
+    //flex: 1,
+    //width: "100%",
+    //aspectRatio: 16 / 9,
+    borderRadius: 5,
+  },
+  card: {
+    width: "100%",
+    height: 195,
+    //aspectRatio: 16 / 9,
+    borderRadius: 5,
+  },
+  image: {
+    borderRadius: 5,
+  },
+  title: {
+    color: "grey",
+    fontSize: 15,
+    marginVertical: 2,
+    fontWeight: "700",
+  },
+  logo: {
+    width: 20,
+    height: 20,
+    borderRadius: 40,
+    marginRight: 5,
+  },
+  avatar_part: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
+  },
+  comment_section: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
+  },
+  avatar_txt: {
+    marginLeft: 10,
+    marginTop: 5,
+  },
+  comment_txt: {
+    marginLeft: 10,
+    marginTop: 5,
+    backgroundColor: "white",
+    borderRadius: 10,
+    width: "80%",
+  },
+  text_avatar_name: {
+    color: "dimgrey",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  text_comment_avatar_name: {
+    color: "dimgrey",
+    fontSize: 16,
+    fontWeight: "700",
+  },
+  text_avatar_moment: {
+    fontSize: 14,
+    color: "grey",
+  },
+  text_comment_moment: {
+    fontSize: 14,
+    color: "black",
+  },
+  line_avatar: {
+    borderWidth: 1,
+    width: 320,
+    marginLeft: 20,
+    marginTop: 5,
+    borderColor: "gainsboro",
+  },
+  textInput: {
+    flex: 1,
+    marginTop: Platform.OS === "ios" ? 0 : -12,
+    paddingLeft: 10,
+    color: "slategray",
+  },
+  action: {
+    flexDirection: "row",
+    marginTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f2f2f2",
+    paddingBottom: 5,
+  },
+});
+
+{
+  /*<View style={styles.sourceContainer}>
+          <FontAwesome name="comments" style={styles.comment_icon} size={30} />
+          <TouchableOpacity>
+            <Text style={styles.comment_text}>Comment</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <FontAwesome style={styles.star_icon} name="star" size={25} />
+          </TouchableOpacity>
+        </View>*/
+}
+
+{
+  /*<View style={styles.comment_section}>
             <Avatar.Image size={50} source={{ uri: props.avatar }} />
             <View style={styles.comment_txt}>
               <Text
@@ -198,115 +324,5 @@ const ArticleCard = (props) => {
               </Text>
             </View>
           </View>
-        </View>
-      </View>
-    </ScrollView>
-  );
-};
-
-export default ArticleCard;
-
-const styles = StyleSheet.create({
-  article_card: {
-    //flex: 1,
-    //width: "100%",
-    //aspectRatio: 16 / 9,
-    borderRadius: 5,
-  },
-  card: {
-    width: "100%",
-    height: 195,
-    //aspectRatio: 16 / 9,
-    borderRadius: 5,
-  },
-  image: {
-    borderRadius: 5,
-  },
-  title: {
-    color: "grey",
-    fontSize: 15,
-    marginVertical: 2,
-    fontWeight: "700",
-  },
-  logo: {
-    width: 20,
-    height: 20,
-    borderRadius: 40,
-    marginRight: 5,
-  },
-  avatar_part: {
-    flexDirection: "row",
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
-    paddingBottom: 5,
-  },
-  comment_section: {
-    flexDirection: "row",
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
-    paddingBottom: 5,
-  },
-  avatar_txt: {
-    marginLeft: 10,
-    marginTop: 5,
-  },
-  comment_txt: {
-    marginLeft: 10,
-    marginTop: 5,
-    backgroundColor: "white",
-    borderRadius: 10,
-    width: "80%",
-  },
-  text_avatar_name: {
-    color: "dimgrey",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  text_comment_avatar_name: {
-    color: "dimgrey",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  text_avatar_moment: {
-    fontSize: 14,
-    color: "grey",
-  },
-  text_comment_moment: {
-    fontSize: 14,
-    color: "black",
-  },
-  line_avatar: {
-    borderWidth: 1,
-    width: 320,
-    marginLeft: 20,
-    marginTop: 5,
-    borderColor: "gainsboro",
-  },
-  textInput: {
-    flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
-    paddingLeft: 10,
-    color: "slategray",
-  },
-  action: {
-    flexDirection: "row",
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#f2f2f2",
-    paddingBottom: 5,
-  },
-});
-
-/*
-<View style={styles.sourceContainer}>
-          <FontAwesome name="comments" style={styles.comment_icon} size={30} />
-          <TouchableOpacity>
-            <Text style={styles.comment_text}>Comment</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome style={styles.star_icon} name="star" size={25} />
-          </TouchableOpacity>
-        </View>
-*/
+        </View>*/
+}

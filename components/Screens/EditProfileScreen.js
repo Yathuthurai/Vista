@@ -90,12 +90,20 @@ const Profile = ({ navigation }) => {
         <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
           <Text style={styles.panelButtonTitle}>Submit</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.myPost_btn}
-          onPress={() => navigation.navigate("MyPosts")}
+        <View
+          style={{
+            paddingTop: 7,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
         >
-          <Text style={styles.gobackButtonTitle}>My Posts</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("MyPosts")}>
+            <Text style={styles.profileFooterText}>My Posts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("ChangePwd")}>
+            <Text style={styles.profileFooterText}>Change password</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -194,6 +202,11 @@ const styles = StyleSheet.create({
   gobackButtonTitle: {
     fontSize: 17,
     fontWeight: "bold",
+    color: "dodgerblue",
+  },
+  profileFooterText: {
+    fontSize: 15,
+    fontWeight: "600",
     color: "dodgerblue",
   },
   action: {

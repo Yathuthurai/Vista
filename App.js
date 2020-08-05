@@ -18,6 +18,7 @@ import SignUpScreen from "./components/Screens/SignUpScreen";
 import RegisteredScreen from "./components/Screens/RegisteredScreen";
 import ProfileScreen from "./components/Screens/ProfileScreen";
 import EditProfileScreen from "./components/Screens/EditProfileScreen";
+import ChangePassword from "./components/Screens/ChangePassword";
 import HomeScreen from "./components/Screens/HomeScreen";
 import FavouritesScreen from "./components/Screens/FavouritesScreen";
 import AddArticleScreen from "./components/Screens/AddArticleScreen";
@@ -50,6 +51,7 @@ export default function App() {
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="MyPosts" component={MyPostsScreen} />
           <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+          <Stack.Screen name="ChangePwd" component={ChangePassword} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
             name="ArticleCardFullView"

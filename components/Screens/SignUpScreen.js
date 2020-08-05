@@ -94,7 +94,6 @@ const SignUpScreen = ({ navigation }) => {
       await dispatch(
         signUp(data.email, data.firstName, data.lastName, data.password)
       );
-      navigation.navigate("Profile");
     } catch (e) {
       setData({
         ...data,

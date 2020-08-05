@@ -70,7 +70,6 @@ const SignInScreen = ({ navigation }) => {
     });
     try {
       await dispatch(logIn(data.email, data.password));
-      navigation.navigate("Profile");
     } catch (e) {
       setData({
         ...data,

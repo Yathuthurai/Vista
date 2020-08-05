@@ -1,8 +1,30 @@
 import * as firebase from "firebase";
+import AsyncStorage from "@react-native-community/async-storage";
 
-export const SIGNUP = "SIGNUP";
+export const AUTHENTICATE = "AUTHENTICATE";
 
-export const LOGIN = "LOGIN";
+export const TRYAUTOLOGIN = "TRYAUTOLOGIN";
+
+export const tryAutoLogin = () => {
+  return {
+    type: TRYAUTOLOGIN,
+  };
+};
+
+export const authentication = (userId, token, firstName, lastName) => {
+  return async (dispatch) => {
+    const email = firebase.auth().currentUser.email;
+
+    dispatch({
+      type: AUTHENTICATE,
+      email,
+      firstName,
+      lastName,
+      token,
+      userId,
+    });
+  };
+};
 
 export const signUp = (email, firstName, lastName, password) => {
   return async (dispatch) => {
@@ -17,14 +39,9 @@ export const signUp = (email, firstName, lastName, password) => {
         .ref(`users/${userId}`)
         .set({ firstName, lastName, email });
 
-      dispatch({
-        type: SIGNUP,
-        email,
-        firstName,
-        lastName,
-        token,
-        userId,
-      });
+      saveDataToStorage(token, userId, firstName, lastName);
+
+      dispatch(authentication(userId, token, firstName, lastName));
     } catch (e) {
       if (e.code === "auth/email-already-in-use") {
         throw new Error("Email address already in use");
@@ -47,14 +64,16 @@ export const logIn = (email, password) => {
         .ref(`users/${userId}`)
         .once("value");
 
-      dispatch({
-        type: LOGIN,
-        email,
-        firstName: user.val().firstName,
-        lastName: user.val().lastName,
+      saveDataToStorage(
         token,
         userId,
-      });
+        user.val().firstName,
+        user.val().lastName
+      );
+
+      dispatch(
+        authentication(userId, token, user.val().firstName, user.val().lastName)
+      );
     } catch (e) {
       if (
         e.code === "auth/user-not-found" ||
@@ -65,4 +84,11 @@ export const logIn = (email, password) => {
       throw e;
     }
   };
+};
+
+const saveDataToStorage = (token, userId, firstName, lastName) => {
+  AsyncStorage.setItem(
+    "UserData",
+    JSON.stringify({ token, userId, firstName, lastName })
+  );
 };

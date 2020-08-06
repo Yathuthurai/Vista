@@ -1,4 +1,4 @@
-import { counterEvent } from "react-native/Libraries/Performance/Systrace";
+//import { counterEvent } from "react-native/Libraries/Performance/Systrace";
 import ArticlePost from "../../Models/ArticlePost";
 import * as firebase from "firebase";
 

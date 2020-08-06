@@ -7,3 +7,5 @@ class Comments {
     this.ownerId = ownerId;
   }
 }
+
+export default Comments;

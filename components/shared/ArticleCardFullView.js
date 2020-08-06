@@ -5,7 +5,6 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
   TextInput,
   Linking,
 } from "react-native";
@@ -39,71 +38,31 @@ const ArticleCard = (props) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.article_card}>
-        <View style={styles.avatar_part}>
-          <Avatar.Image size={50} source={{ uri: props.avatar }} />
-          <View style={styles.avatar_txt}>
-            <Text style={styles.text_avatar_name}>{props.name}</Text>
-            <Text style={styles.text_avatar_moment}>
-              {moment(props.time).fromNow()}
-            </Text>
-          </View>
+    <View style={styles.article_card}>
+      <View style={styles.avatar_part}>
+        <Avatar.Image size={50} source={{ uri: props.avatar }} />
+        <View style={styles.avatar_txt}>
+          <Text style={styles.text_avatar_name}>{props.name}</Text>
+          <Text style={styles.text_avatar_moment}>
+            {moment(props.time).fromNow()}
+          </Text>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.title}>{props.title}</Text>
-          <Image source={{ uri: props.image }} style={styles.card} />
-        </TouchableOpacity>
-        <View style={styles.line_avatar} />
-        <Text style={{ textAlign: "justify" }}>{props.description}</Text>
-        <Text style={{ textAlign: "justify" }}>References: </Text>
-        <Text
-          onPress={() => Linking.openURL(props.referenceLink)}
-          style={{ textAlign: "justify", color: "dodgerblue" }}
-        >
-          {props.referenceLink}
-        </Text>
-        <View style={styles.line_avatar} />
-        <View style={{ paddingHorizontal: 8 }}>
-          <View style={styles.comment_section}>
-            <Avatar.Image
-              size={50}
-              source={{
-                uri:
-                  "https://www.nicepng.com/png/full/522-5226533_get-beyond-the-usual-suspects-profile-pic-icon.png",
-              }}
-            />
-            <View style={styles.comment_txt}>
-              <View style={styles.action}>
-                <TextInput
-                  placeholder="Write a comment..."
-                  autoCapitalize="none"
-                  style={styles.textInput}
-                  onChangeText={(val) => textInputChange(val)}
-                  multiline
-                />
-                {data.check_textInputChange ? (
-                  <TouchableOpacity style={{ paddingRight: 5 }}>
-                    <Animatable.View animation="bounceIn">
-                      <Feather
-                        name="message-circle"
-                        color="dodgerblue"
-                        size={20}
-                      />
-                    </Animatable.View>
-                  </TouchableOpacity>
-                ) : null}
-              </View>
-            </View>
-          </View>
-        </View>
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
-        <CommentCard />
       </View>
-    </ScrollView>
+      <TouchableOpacity>
+        <Text style={styles.title}>{props.title}</Text>
+        <Image source={{ uri: props.image }} style={styles.card} />
+      </TouchableOpacity>
+      <View style={styles.line_avatar} />
+      <Text style={{ textAlign: "justify" }}>{props.description}</Text>
+      <Text style={{ textAlign: "justify" }}>References: </Text>
+      <Text
+        onPress={() => Linking.openURL(props.referenceLink)}
+        style={{ textAlign: "justify", color: "dodgerblue" }}
+      >
+        {props.referenceLink}
+      </Text>
+      <View style={styles.line_avatar} />
+    </View>
   );
 };
 

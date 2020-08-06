@@ -10,6 +10,7 @@ import {
   Linking,
 } from "react-native";
 import { Avatar } from "react-native-paper";
+import moment from "moment";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
@@ -25,24 +26,28 @@ const CommentCard = (props) => {
           }}
         />
         <View style={styles.comment_txt}>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
+          <View>
             <Text
               style={[
                 styles.text_comment_avatar_name,
                 { paddingHorizontal: 7 },
               ]}
             >
-              Mr Bean
+              {props.userName}
             </Text>
-            <Text style={{ color: "grey", fontSize: 12, paddingRight: 5 }}>
-              1 min
+            <Text
+              style={{
+                color: "grey",
+                fontSize: 10,
+                paddingRight: 5,
+                paddingHorizontal: 7,
+              }}
+            >
+              {moment(props.time).fromNow()}
             </Text>
           </View>
           <Text style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}>
-            Thank you for sharing this artcile Thank you for sharing this
-            sharing this artcile and cool 😊
+            {props.comment}
           </Text>
         </View>
       </View>

@@ -1,8 +1,10 @@
 import ARTICLE_POST from "../../Screens/data/Articles";
 import {
+  ADD_FAVORITES,
   DELETE_ARTICLES,
   POST_ARTICLE,
   SET_ARTICLE,
+  SET_FAVORITES,
   UPDATE_ARTICLES,
 } from "../Actions/articles";
 import ArticlePost from "../../Models/ArticlePost";
@@ -10,12 +12,14 @@ import ArticlePost from "../../Models/ArticlePost";
 const initialState = {
   allPosts: [],
   myPosts: [],
+  favPosts: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ARTICLE:
       return {
+        ...state,
         allPosts: action.articles,
         myPosts: action.myArticles,
       };
@@ -73,6 +77,33 @@ export default (state = initialState, action) => {
         ...state,
         allPosts: updatedAllPosts,
         //myPosts: updatedMyPosts,
+      };
+
+    case ADD_FAVORITES:
+      console.log(state.favPosts);
+      const existingIndex = state.favPosts.findIndex(
+        (post) => post.id === action.articleId
+      );
+      if (existingIndex >= 0) {
+        const updateFavPosts = [...state.favPosts];
+        updateFavPosts.splice(existingIndex, 1);
+        return {
+          ...state,
+          favPosts: updateFavPosts,
+        };
+      } else {
+        const post = state.allPosts.find(
+          (post) => post.id === action.articleId
+        );
+        return {
+          ...state,
+          favPosts: state.favPosts.concat(post),
+        };
+      }
+    case SET_FAVORITES:
+      return {
+        ...state,
+        favPosts: action.articles,
       };
 
     default:

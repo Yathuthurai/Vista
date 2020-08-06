@@ -20,6 +20,8 @@ const ArticleCard = (props) => {
   const deleteHandler = (id) => {
     dispatch(deleteArtricles(id));
   };
+
+  const { id } = props;
   return (
     <View>
       <View style={styles.article_card}>
@@ -70,7 +72,7 @@ const ArticleCard = (props) => {
           <Text style={styles.title}>{props.title}</Text>
           <Image source={{ uri: props.image }} style={styles.card} />
         </TouchableOpacity>
-        <CardBottom />
+        <CardBottom id={id} />
         <Divider style={styles.line} />
         {/*<View style={styles.line_avatar} />*/}
       </View>

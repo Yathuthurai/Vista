@@ -18,7 +18,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
 import ArticleCard from "../shared/ArticleCard";
-import { setArticles } from "../Store/Actions/articles";
+import { setArticles, fetchFavorite } from "../Store/Actions/articles";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -31,8 +31,9 @@ const HomeScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const loadArticles = useCallback(() => {
-    dispatch(setArticles());
+  const loadArticles = useCallback(async () => {
+    await dispatch(setArticles());
+    await dispatch(fetchFavorite());
   }, [dispatch]);
 
   useEffect(() => {
@@ -68,6 +69,7 @@ const HomeScreen = ({ navigation }) => {
             time={item.moment}
             title={item.title}
             image={item.imgUrl}
+            id={item.id}
           />
         )}
       />

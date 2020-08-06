@@ -8,6 +8,7 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
+  FlatList,
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
@@ -16,8 +17,14 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import SearchbarElement from "../MainpageComponents/SearchbarElement";
+import ArticleCard from "../shared/ArticleCard";
+import { useSelector, useDispatch } from "react-redux";
 
 const FavouritesScreen = ({ navigation }) => {
+  const article_data = useSelector((state) => state.article.favPosts);
+  const clickHandler = (id) => {
+    navigation.navigate("ArticleCardFullView", { id });
+  };
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" style={styles.btn_group_container}>
@@ -37,7 +44,20 @@ const FavouritesScreen = ({ navigation }) => {
       <View style={styles.searchbar_container}>
         <SearchbarElement />
       </View>
-      <Text>Favourites here</Text>
+      <FlatList
+        data={article_data}
+        renderItem={({ item }) => (
+          <ArticleCard
+            clickHandler={() => clickHandler(item.id)}
+            avatar={item.avatar}
+            name={item.owner}
+            time={item.moment}
+            title={item.title}
+            image={item.imgUrl}
+            id={item.id}
+          />
+        )}
+      />
     </View>
   );
 };

@@ -4,30 +4,19 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Platform,
   StyleSheet,
-  StatusBar,
-  Alert,
-  ActivityIndicator,
 } from "react-native";
-
-import { logIn } from "../Store/Actions/auth";
-
-import { useDispatch } from "react-redux";
 
 import * as Animatable from "react-native-animatable";
 import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 
-const SignInScreen = ({ navigation }) => {
+const ForgotPasswordScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: "",
-    password: "",
     check_textInputChange: false,
-    secureTextEntry: true,
     error: null,
-    isLoading: false,
   });
 
   const textInputChange = (val) => {
@@ -45,22 +34,6 @@ const SignInScreen = ({ navigation }) => {
       });
     }
   };
-
-  const handlePasswordChange = (val) => {
-    setData({
-      ...data,
-      password: val,
-    });
-  };
-
-  const updateSecureTextEntry = () => {
-    setData({
-      ...data,
-      secureTextEntry: !data.secureTextEntry,
-    });
-  };
-
-  const dispatch = useDispatch();
 
   const submitHandler = async () => {
     setData({
@@ -96,10 +69,14 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome!</Text>
+        <Text style={styles.text_header}>Forgot your password?</Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-        <Text style={styles.text_footer}>Email</Text>
+        <Text style={styles.text_footer}>
+          To reset your password, submit your email address below. If we can
+          find your email, an email will be sent to your email address, with
+          instructions how to get access again.
+        </Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="#05375a" size={20} />
           <TextInput
@@ -114,38 +91,9 @@ const SignInScreen = ({ navigation }) => {
             </Animatable.View>
           ) : null}
         </View>
-        <Text style={[styles.text_footer, { marginTop: 35 }]}>Password</Text>
-        <View style={styles.action}>
-          <FontAwesome name="lock" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Your Password"
-            secureTextEntry={data.secureTextEntry ? true : false}
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(val) => handlePasswordChange(val)}
-          />
-          <TouchableOpacity onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ? (
-              <Feather name="eye-off" color="grey" size={20} />
-            ) : (
-              <Feather name="eye" color="grey" size={20} />
-            )}
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity style={styles.button} onPress={submitHandler}>
-            <Text style={styles.signInBtntxt}>Sign In</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.signUpBtn}
-            onPress={() => navigation.navigate("SignUp")}
-          >
-            <Text style={styles.signUpBtntxt}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <TouchableOpacity onPress={() => navigation.navigate("ForgotPwd")}>
-            <Text style={styles.forgotPwd_txt}>Forgot Password?</Text>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text style={styles.back_txt}>Submit</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text style={styles.back_txt}>Back</Text>
@@ -156,7 +104,7 @@ const SignInScreen = ({ navigation }) => {
   );
 };
 
-export default SignInScreen;
+export default ForgotPasswordScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -185,6 +133,7 @@ const styles = StyleSheet.create({
   text_footer: {
     color: "#05375a",
     fontSize: 18,
+    textAlign: "justify",
   },
   action: {
     flexDirection: "row",
@@ -193,70 +142,11 @@ const styles = StyleSheet.create({
     borderBottomColor: "#f2f2f2",
     paddingBottom: 5,
   },
-  actionError: {
-    flexDirection: "row",
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#FF0000",
-    paddingBottom: 5,
-  },
   textInput: {
     flex: 1,
     marginTop: Platform.OS === "ios" ? 0 : -12,
     paddingLeft: 10,
     color: "#05375a",
-  },
-  errorMsg: {
-    color: "#FF0000",
-    fontSize: 14,
-  },
-  button: {
-    //width: 350,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
-    flexDirection: "row",
-    backgroundColor: "dodgerblue",
-    marginTop: 50,
-  },
-  signIn: {
-    //width: "100%",
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-  },
-  textSign: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  signInBtntxt: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  signUpBtn: {
-    //width: 350,
-    height: 40,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
-    flexDirection: "row",
-    borderColor: "dodgerblue",
-    borderWidth: 1,
-    marginTop: 20,
-  },
-  signUpBtntxt: {
-    color: "dodgerblue",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  forgotPwd_txt: {
-    paddingVertical: 25,
-    color: "dodgerblue",
-    fontWeight: "600",
-    fontSize: 15,
   },
   back_txt: {
     paddingVertical: 25,

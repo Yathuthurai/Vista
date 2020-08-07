@@ -9,12 +9,16 @@ import {
 } from "react-native";
 
 import { useTheme } from "react-native-paper";
+import { useSelector } from "react-redux";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import ImagePickerExample from "../shared/ImagePickerExample";
+
 const Profile = ({ navigation }) => {
+  const firstName = useSelector((state) => state.auth.firstName);
+  const lastName = useSelector((state) => state.auth.lastName);
   const [image, setImage] = useState(
     "https://api.adorable.io/avatars/80/abott@adorable.png"
   );
@@ -39,7 +43,7 @@ const Profile = ({ navigation }) => {
               color: "dimgray",
             }}
           >
-            Jack Sparrow
+            {firstName + " " + lastName}
           </Text>
         </View>
       </View>

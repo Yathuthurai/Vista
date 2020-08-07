@@ -43,6 +43,7 @@ const AddArticleScreen = ({ navigation }) => {
       return;
     }
     dispatch(postArtricles(text1, text2, text3, text4));
+    navigation.navigate("Home");
   };
 
   return (

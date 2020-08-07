@@ -19,6 +19,8 @@ import ImagePickerExample from "../shared/ImagePickerExample";
 const Profile = ({ navigation }) => {
   const firstName = useSelector((state) => state.auth.firstName);
   const lastName = useSelector((state) => state.auth.lastName);
+  const email = useSelector((state) => state.auth.email);
+
   const [image, setImage] = useState(
     "https://api.adorable.io/avatars/80/abott@adorable.png"
   );
@@ -51,6 +53,7 @@ const Profile = ({ navigation }) => {
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
+            value={firstName}
             placeholder="First Name"
             placeholderTextColor="#666666"
             autoCorrect={false}
@@ -65,6 +68,7 @@ const Profile = ({ navigation }) => {
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
+            value={lastName}
             placeholder="Last Name"
             placeholderTextColor="#666666"
             autoCorrect={false}
@@ -79,6 +83,7 @@ const Profile = ({ navigation }) => {
         <View style={styles.action}>
           <FontAwesome name="envelope-o" color={colors.text} size={20} />
           <TextInput
+            value={email}
             placeholder="Email"
             placeholderTextColor="#666666"
             keyboardType="email-address"

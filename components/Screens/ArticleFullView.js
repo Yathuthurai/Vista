@@ -70,7 +70,7 @@ const ArticleFullView = ({ navigation, route }) => {
       >
         <Text style={styles.back_txt}>Back</Text>
       </TouchableOpacity>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <ArticleCardFullView
             avatar={article.avatar}

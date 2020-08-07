@@ -6,7 +6,7 @@ import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { addToFavorite } from "../Store/Actions/articles";
 
-const ArticleCard = ({ id }) => {
+const ArticleCard = ({ id, navigation }) => {
   const [data, setData] = React.useState({
     isFavorite: false,
   });
@@ -25,6 +25,10 @@ const ArticleCard = ({ id }) => {
 
     // });
   };
+
+  // const commentHandler = (id) => {
+  //   navigation.navigate("ArticleCardFullView", { id });
+  // };
 
   return (
     <View style={styles.bottomRow}>

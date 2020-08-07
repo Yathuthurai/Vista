@@ -70,7 +70,17 @@ const ArticleCard = (props) => {
         </View>
         <TouchableOpacity onPress={props.clickHandler}>
           <Text style={styles.title}>{props.title}</Text>
-          <Image source={{ uri: props.image }} style={styles.card} />
+          {props.image ? (
+            <Image
+              source={{
+                uri: props.image,
+              }}
+              style={styles.card}
+            />
+          ) : (
+            <Text style={styles.text_avatar_moment}>Read more...</Text>
+          )}
+          {/* <Image source={{ uri: props.image }} style={styles.card} /> */}
         </TouchableOpacity>
         <CardBottom id={id} />
         <Divider style={styles.line} />

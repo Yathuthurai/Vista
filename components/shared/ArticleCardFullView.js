@@ -50,11 +50,23 @@ const ArticleCard = (props) => {
       </View>
       <TouchableOpacity>
         <Text style={styles.title}>{props.title}</Text>
-        <Image source={{ uri: props.image }} style={styles.card} />
+        {props.image ? (
+          <Image
+            source={{
+              uri: props.image,
+            }}
+            style={styles.card}
+          />
+        ) : null}
+        {/* <Image source={{ uri: props.image }} style={styles.card} /> */}
       </TouchableOpacity>
       <View style={styles.line_avatar} />
       <Text style={{ textAlign: "justify" }}>{props.description}</Text>
-      <Text style={{ textAlign: "justify" }}>References: </Text>
+
+      {props.referenceLink.length !== 0 ? (
+        <Text style={{ textAlign: "justify" }}>References: </Text>
+      ) : null}
+      {/* <Text style={{ textAlign: "justify" }}>References: </Text> */}
       <Text
         onPress={() => Linking.openURL(props.referenceLink)}
         style={{ textAlign: "justify", color: "dodgerblue" }}
@@ -160,128 +172,3 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
 });
-
-{
-  /*<View style={styles.sourceContainer}>
-          <FontAwesome name="comments" style={styles.comment_icon} size={30} />
-          <TouchableOpacity>
-            <Text style={styles.comment_text}>Comment</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome style={styles.star_icon} name="star" size={25} />
-          </TouchableOpacity>
-        </View>*/
-}
-
-{
-  /*<View style={styles.comment_section}>
-            <Avatar.Image size={50} source={{ uri: props.avatar }} />
-            <View style={styles.comment_txt}>
-              <Text
-                style={[
-                  styles.text_comment_avatar_name,
-                  { paddingHorizontal: 7 },
-                ]}
-              >
-                Mr Bean
-              </Text>
-              <Text
-                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
-              >
-                Thank you for sharing this artcile Thank you for sharing this
-                sharing this artcile and cool 😊
-              </Text>
-            </View>
-          </View>
-          <View style={styles.comment_section}>
-            <Avatar.Image
-              size={50}
-              source={{
-                uri:
-                  "https://i1.sndcdn.com/avatars-000001694032-utrffl-t500x500.jpg",
-              }}
-            />
-            <View style={styles.comment_txt}>
-              <Text
-                style={[
-                  styles.text_comment_avatar_name,
-                  { paddingHorizontal: 7 },
-                ]}
-              >
-                Mr Vadivelu
-              </Text>
-              <Text
-                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
-              >
-                Ippa naa enna solrathu
-              </Text>
-            </View>
-          </View>
-          <View style={styles.comment_section}>
-            <Avatar.Image
-              size={50}
-              source={{
-                uri:
-                  "https://lh3.googleusercontent.com/proxy/3TxK8CjVz4VMp-d0Jg6mBHNwiQnAtC8-PlIYmg_lF1VKcoT-qDbg46L9679WRoZhdxDbOg1TSuu9rgrhe-GcHENKevL3FlYiC_KU0XdJWIJ2kgISnS7bUHxugkGkkXPhKUkahCb9tp_JcpsND1Z0Qns",
-              }}
-            />
-            <View style={styles.comment_txt}>
-              <Text
-                style={[
-                  styles.text_comment_avatar_name,
-                  { paddingHorizontal: 7 },
-                ]}
-              >
-                Mr Vivek
-              </Text>
-              <Text
-                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
-              >
-                Ivanukala ellaam paaththa rompa nallavunka maari theriyalaye
-              </Text>
-            </View>
-          </View>
-          <View style={styles.comment_section}>
-            <Avatar.Image size={50} source={{ uri: props.avatar }} />
-            <View style={styles.comment_txt}>
-              <Text
-                style={[
-                  styles.text_comment_avatar_name,
-                  { paddingHorizontal: 7 },
-                ]}
-              >
-                Mr Bean
-              </Text>
-              <Text
-                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
-              >
-                Thank you for sharing this artcile
-              </Text>
-            </View>
-          </View>
-          <View style={styles.comment_section}>
-            <Avatar.Image
-              size={50}
-              source={{
-                uri:
-                  "https://sourcefb.com/assets/memes/picture/senthil-photos-pictures-stills.jpg",
-              }}
-            />
-            <View style={styles.comment_txt}>
-              <Text
-                style={[
-                  styles.text_comment_avatar_name,
-                  { paddingHorizontal: 7 },
-                ]}
-              >
-                Mr Bean
-              </Text>
-              <Text
-                style={[styles.text_comment_moment, { paddingHorizontal: 7 }]}
-              >
-                Thank you for sharing this artcile
-              </Text>
-            </View>
-          </View>
-        </View>*/
-}

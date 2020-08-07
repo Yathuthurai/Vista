@@ -33,11 +33,7 @@ const AddArticleScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const postHandler = () => {
-    if (
-      text1.trim().length === 0 ||
-      text2.trim().length === 0 ||
-      text3.trim().length === 0
-    ) {
+    if (text1.trim().length === 0 || text3.trim().length === 0) {
       setFormError("Check your inputs");
       Alert.alert("Error", "Check your inputs...", [{ text: "OK" }]);
       return;
@@ -112,6 +108,7 @@ const AddArticleScreen = ({ navigation }) => {
               autoCapitalize="none"
               style={styles.textInput}
               onChangeText={(text4) => setText4(text4)}
+              multiline
             />
           </View>
           <View style={{ alignItems: "center", paddingVertical: 20 }}>
@@ -200,6 +197,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+//text2.trim().length === 0 ||
 
 /*
 <View style={{ paddingTop: 50 }}>

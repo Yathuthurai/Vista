@@ -22,7 +22,7 @@ export const setArticles = () => {
       loadedArticles.push(
         new ArticlePost(
           key,
-          "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png",
+          responseData[key].avatar,
           responseData[key].userName,
           responseData[key].createdAt,
           responseData[key].title,
@@ -47,6 +47,7 @@ export const postArtricles = (title, imageUrl, description, referenceLink) => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const userName = getState().auth.firstName + " " + getState().auth.lastName;
+    const avatar = getState().auth.profilePicture;
 
     const createdAt = new Date();
     const response = await fetch(
@@ -62,6 +63,7 @@ export const postArtricles = (title, imageUrl, description, referenceLink) => {
           ownerId: userId,
           userName,
           createdAt,
+          avatar,
         }),
       }
     );
@@ -79,6 +81,7 @@ export const postArtricles = (title, imageUrl, description, referenceLink) => {
         description,
         referenceLink,
         createdAt,
+        avatar,
       },
     });
   };
@@ -108,6 +111,7 @@ export const updateArtricles = (
     const userId = getState().auth.userId;
     const userName = getState().auth.firstName + " " + getState().auth.lastName;
     const createdAt = new Date();
+    const avatar = getState().auth.profilePicture;
     const response = await fetch(
       `https://articlesharingsystem.firebaseio.com/articles/${id}.json`,
       {
@@ -119,6 +123,7 @@ export const updateArtricles = (
           description,
           referenceLink,
           createdAt,
+          avatar,
         }),
       }
     );
@@ -137,6 +142,7 @@ export const updateArtricles = (
         description,
         referenceLink,
         createdAt,
+        avatar,
       },
     });
   };

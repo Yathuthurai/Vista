@@ -113,6 +113,9 @@ const Profile = ({ navigation }) => {
             <Text style={styles.profileFooterText}>Change password</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity onPress={() => navigation.navigate("RemoveAcc")}>
+          <Text style={styles.remove_account_text}>Remove account...</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -238,6 +241,12 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === "ios" ? 0 : -12,
     paddingLeft: 10,
     color: "#05375a",
+  },
+  remove_account_text: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "red",
+    paddingTop: 10,
   },
 });
 

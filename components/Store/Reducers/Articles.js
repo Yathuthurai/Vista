@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case POST_ARTICLE:
       const newPost = new ArticlePost(
         action.postData.id,
-        "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png",
+        action.postData.avatar,
         action.postData.userName,
         action.postData.createdAt,
         action.postData.title,
@@ -55,7 +55,7 @@ export default (state = initialState, action) => {
       );
       const updateArticle = new ArticlePost(
         action.postData.id,
-        "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png",
+        action.postData.avatar,
         state.allPosts[articleId].owner,
         action.postData.createdAt,
         action.postData.title,

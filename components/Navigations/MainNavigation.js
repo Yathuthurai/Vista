@@ -11,6 +11,7 @@ import AddArticleScreen from "../Screens/AddArticleScreen";
 import ArticleFullView from "../Screens/ArticleFullView";
 import MyPostsScreen from "../Screens/MyPostsScreen";
 import UpdateScreen from "../Screens/UpdateScreen";
+import RemoveAccountScreen from "../Screens/RemoveAccountScreen";
 
 const MainNavigation = () => {
   const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ const MainNavigation = () => {
       <Stack.Screen name="UpdateArticle" component={UpdateScreen} />
       <Stack.Screen name="Add" component={AddArticleScreen} />
       <Stack.Screen name="Favourites" component={FavouritesScreen} />
+      <Stack.Screen name="RemoveAcc" component={RemoveAccountScreen} />
     </Stack.Navigator>
   );
 };

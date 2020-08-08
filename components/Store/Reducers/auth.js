@@ -1,4 +1,10 @@
-import { AUTHENTICATE, LOGOUT, TRYAUTOLOGIN } from "../Actions/auth";
+import {
+  AUTHENTICATE,
+  DELETE_ACCOUNT,
+  LOGOUT,
+  SELECT_IMAGE,
+  TRYAUTOLOGIN,
+} from "../Actions/auth";
 
 const initialState = {
   token: null,
@@ -7,6 +13,7 @@ const initialState = {
   lastName: "",
   tryAutoLogin: false,
   email: "",
+  profilePicture: null,
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +27,7 @@ export default (state = initialState, action) => {
         lastName: action.lastName,
         tryAutoLogin: true,
         email: action.email,
+        profilePicture: action.url,
       };
 
     case TRYAUTOLOGIN:
@@ -28,10 +36,17 @@ export default (state = initialState, action) => {
         tryAutoLogin: true,
       };
     case LOGOUT:
+    case DELETE_ACCOUNT:
       return {
         ...initialState,
         tryAutoLogin: true,
       };
+    case SELECT_IMAGE:
+      return {
+        ...initialState,
+        profilePicture: action.url,
+      };
+
     default:
       return state;
   }

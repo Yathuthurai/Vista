@@ -24,6 +24,7 @@ const ProfileScreen = ({ navigation }) => {
   const firstName = useSelector((state) => state.auth.firstName);
   const lastName = useSelector((state) => state.auth.lastName);
   const email = useSelector((state) => state.auth.email);
+  const profilePicture = useSelector((state) => state.auth.profilePicture);
   const dispatch = useDispatch();
   const logoutHandler = async () => {
     await dispatch(logout());
@@ -44,7 +45,11 @@ const ProfileScreen = ({ navigation }) => {
         <View style={styles.container_profile}>
           <Avatar.Image
             size={200}
-            source={require("../../assets/profile.png")}
+            source={
+              profilePicture
+                ? { uri: profilePicture }
+                : require("../../assets/profile.png")
+            }
           />
           <Text style={styles.text_footer1}>{firstName + " " + lastName}</Text>
           <Text style={styles.text_footer2}>{email}</Text>

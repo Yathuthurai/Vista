@@ -5,6 +5,10 @@ export const AUTHENTICATE = "AUTHENTICATE";
 
 export const TRYAUTOLOGIN = "TRYAUTOLOGIN";
 
+export const SELECT_IMAGE = "SELECT_IMAGE";
+
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+
 export const LOGOUT = "LOGOUT";
 
 export const tryAutoLogin = () => {
@@ -15,6 +19,12 @@ export const tryAutoLogin = () => {
 
 export const authentication = (userId, token, firstName, lastName, email) => {
   return async (dispatch) => {
+    let url;
+    try {
+      url = await firebase.storage().ref(`profile/${userId}`).getDownloadURL();
+    } catch (e) {
+      url = null;
+    }
     dispatch({
       type: AUTHENTICATE,
       email,
@@ -22,6 +32,7 @@ export const authentication = (userId, token, firstName, lastName, email) => {
       lastName,
       token,
       userId,
+      url,
     });
   };
 };
@@ -107,4 +118,57 @@ const saveDataToStorage = (token, userId, firstName, lastName, email) => {
     "UserData",
     JSON.stringify({ token, userId, firstName, lastName, email })
   );
+};
+
+export const imagePick = (image) => {
+  return async (dispatch, getState) => {
+    try {
+      const userId = getState().auth.userId;
+      await firebase.storage().ref(`profile/${userId}`).put(image);
+      const url = await firebase
+        .storage()
+        .ref(`profile/${userId}`)
+        .getDownloadURL();
+
+      dispatch({
+        type: SELECT_IMAGE,
+        url,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const forgotPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      await firebase.auth().sendPasswordResetEmail(email);
+    } catch (e) {
+      if (e.code === "auth/user-not-found") {
+        throw new Error("Email not found!");
+      }
+      throw e;
+    }
+  };
+};
+
+export const deleteAccount = (password) => {
+  return async (dispatch, getState) => {
+    try {
+      const email = getState().auth.email;
+      const userId = getState().auth.userId;
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await firebase.database().ref(`users/${userId}`).remove();
+      await firebase.auth().currentUser.delete();
+      dispatch({
+        type: DELETE_ACCOUNT,
+      });
+    } catch (e) {
+      if (e.code === "auth/wrong-password") {
+        throw new Error("Incorrect password...");
+      }
+      throw e;
+    }
+  };
 };

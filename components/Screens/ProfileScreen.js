@@ -33,9 +33,11 @@ const ProfileScreen = ({ navigation }) => {
       <View style={styles.header}>
         <Text style={styles.text_header}>
           Welcome to{" "}
-          <Text style={{ color: "#ffd700", fontStyle: "italic" }}>
-            ArticleCenter!
+          <Text style={{ color: "powderblue", fontStyle: "italic" }}>
+            Vista
           </Text>
+          {"\n"}
+          <Text style={styles.text_header}>Knowledge sharing center</Text>
         </Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   footer: {
-    flex: 3,
+    flex: 4,
     backgroundColor: "#fff",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -103,9 +105,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text_header: {
-    color: "#fff",
+    color: "lavender",
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 27,
   },
   text_footer1: {
     color: "#05375a",

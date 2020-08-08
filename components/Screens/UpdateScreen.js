@@ -38,11 +38,7 @@ const AddArticleScreen = ({ navigation, route }) => {
   const dispatch = useDispatch();
 
   const updateHandler = () => {
-    if (
-      text1.trim().length === 0 ||
-      text2.trim().length === 0 ||
-      text3.trim().length === 0
-    ) {
+    if (text1.trim().length === 0 || text3.trim().length === 0) {
       setFormError("Check your inputs");
       Alert.alert("Error", "Check your inputs...", [{ text: "OK" }]);
       return;

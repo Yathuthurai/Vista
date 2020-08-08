@@ -107,11 +107,7 @@ const ArticleFullView = ({ navigation, route }) => {
                       style={{ paddingRight: 5 }}
                     >
                       <Animatable.View animation="bounceIn">
-                        <Feather
-                          name="message-circle"
-                          color="dodgerblue"
-                          size={20}
-                        />
+                        <Feather name="play" color="dodgerblue" size={20} />
                       </Animatable.View>
                     </TouchableOpacity>
                   ) : null}

@@ -23,69 +23,67 @@ const ArticleCard = (props) => {
 
   const { id } = props;
   return (
-    <View>
-      <View style={styles.article_card}>
-        <View style={styles.avatar_part}>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <Avatar.Image size={50} source={{ uri: props.avatar }} />
-            <View style={styles.avatar_txt}>
-              <Text style={styles.text_avatar_name}>{props.name}</Text>
-              <Text style={styles.text_avatar_moment}>
-                {moment(props.time).fromNow()}
-              </Text>
+    <View style={styles.article_card}>
+      <View style={styles.avatar_part}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <Avatar.Image size={50} source={{ uri: props.avatar }} />
+          <View style={styles.avatar_txt}>
+            <Text style={styles.text_avatar_name}>{props.name}</Text>
+            <Text style={styles.text_avatar_moment}>
+              {moment(props.time).fromNow()}
+            </Text>
+          </View>
+        </View>
+        {props.editable ? (
+          <View style={{ justifyContent: "flex-end" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                paddingVertical: 12,
+              }}
+            >
+              <TouchableOpacity onPress={props.updateHandler}>
+                <FontAwesome name="edit" color="grey" size={23} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ paddingHorizontal: 20 }}
+                onPress={() =>
+                  Alert.alert(
+                    "Confirm",
+                    "Are you going to delete this Article ?",
+                    [
+                      {
+                        text: "Delete",
+                        onPress: () => deleteHandler(props.id),
+                      },
+                      { text: "Cancel" },
+                    ]
+                  )
+                }
+              >
+                <FontAwesome name="trash" color="grey" size={23} />
+              </TouchableOpacity>
             </View>
           </View>
-          {props.editable ? (
-            <View style={{ justifyContent: "flex-end" }}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  paddingVertical: 12,
-                }}
-              >
-                <TouchableOpacity onPress={props.updateHandler}>
-                  <FontAwesome name="edit" color="grey" size={23} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{ paddingHorizontal: 20 }}
-                  onPress={() =>
-                    Alert.alert(
-                      "Confirm",
-                      "Are you going to delete this Article ?",
-                      [
-                        {
-                          text: "Delete",
-                          onPress: () => deleteHandler(props.id),
-                        },
-                        { text: "Cancel" },
-                      ]
-                    )
-                  }
-                >
-                  <FontAwesome name="trash" color="grey" size={23} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ) : null}
-        </View>
-        <TouchableOpacity onPress={props.clickHandler}>
-          <Text style={styles.title}>{props.title}</Text>
-          {props.image ? (
-            <Image
-              source={{
-                uri: props.image,
-              }}
-              style={styles.card}
-            />
-          ) : (
-            <Text style={styles.text_avatar_moment}>Read more...</Text>
-          )}
-          {/* <Image source={{ uri: props.image }} style={styles.card} /> */}
-        </TouchableOpacity>
-        <CardBottom id={id} />
-        <Divider style={styles.line} />
-        {/*<View style={styles.line_avatar} />*/}
+        ) : null}
       </View>
+      <TouchableOpacity onPress={props.clickHandler}>
+        <Text style={styles.title}>{props.title}</Text>
+        {props.image ? (
+          <Image
+            source={{
+              uri: props.image,
+            }}
+            style={styles.card}
+          />
+        ) : (
+          <Text style={styles.text_avatar_moment}>Read more...</Text>
+        )}
+        {/* <Image source={{ uri: props.image }} style={styles.card} /> */}
+      </TouchableOpacity>
+      <CardBottom id={id} />
+      <Divider style={styles.line} />
+      {/*<View style={styles.line_avatar} />*/}
     </View>
   );
 };
@@ -98,6 +96,7 @@ const styles = StyleSheet.create({
     //width: "100%",
     //aspectRatio: 16 / 9,
     borderRadius: 5,
+    paddingTop: 10,
   },
   card: {
     width: "100%",

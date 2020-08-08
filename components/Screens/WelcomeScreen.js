@@ -25,9 +25,12 @@ const WelcomeScreen = ({ navigation }) => {
           style={styles.logo}
           resizeMode="stretch"
         />
+        <Text style={styles.text_header}>Vista</Text>
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
-        <Text style={styles.title}>Share your knowledge with Everyone!</Text>
+        <Text style={styles.title}>
+          Share your knowledge with Everyone in Vista!
+        </Text>
         <Text style={styles.text}>Sign In with account</Text>
         <View style={styles.button}>
           <TouchableOpacity style={styles.signIn}>
@@ -97,5 +100,10 @@ const styles = StyleSheet.create({
   textSign: {
     color: "white",
     fontWeight: "bold",
+  },
+  text_header: {
+    color: "powderblue",
+    fontWeight: "bold",
+    fontSize: 35,
   },
 });

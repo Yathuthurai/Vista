@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   TextInput,
+  Image,
   StyleSheet,
   FlatList,
 } from "react-native";
@@ -55,22 +56,28 @@ const MyPostsScreen = ({ navigation }) => {
         <Text style={styles.gobackButtonTitle}>Back</Text>
       </TouchableOpacity>
       <View>
-        <FlatList
-          data={article_data}
-          renderItem={({ item }) => (
-            <ArticleCard
-              clickHandler={() => clickHandler(item.id)}
-              updateHandler={() => updateHandler(item.id)}
-              avatar={item.avatar}
-              name={item.owner}
-              time={item.moment}
-              title={item.title}
-              image={item.imgUrl}
-              editable={true}
-              id={item.id}
-            />
-          )}
-        />
+        {article_data.length !== 0 ? (
+          <FlatList
+            data={article_data}
+            renderItem={({ item }) => (
+              <ArticleCard
+                clickHandler={() => clickHandler(item.id)}
+                updateHandler={() => updateHandler(item.id)}
+                avatar={item.avatar}
+                name={item.owner}
+                time={item.moment}
+                title={item.title}
+                image={item.imgUrl}
+                editable={true}
+                id={item.id}
+              />
+            )}
+          />
+        ) : (
+          <View style={styles.centered}>
+            <Text style={styles.noPost_txt}>You haven't post anything yet</Text>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -85,7 +92,19 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 20,
     paddingBottom: 50,
-    paddingTop: 10,
+    paddingTop: 25,
+  },
+  centered: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: "50%",
+  },
+  noPost_txt: {
+    color: "red",
+    fontSize: 16,
+  },
+  noPost_icon: {
+    fontSize: 30,
   },
   goback_btn: {
     padding: 11,
@@ -98,4 +117,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "dodgerblue",
   },
+  nothing: {
+    height: 200,
+    width: 300,
+    alignSelf: "center",
+  },
 });
+
+/*
+
+*/

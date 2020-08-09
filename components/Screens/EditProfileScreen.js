@@ -95,6 +95,9 @@ const Profile = ({ navigation }) => {
               },
             ]}
           />
+          <TouchableOpacity onPress={() => navigation.navigate("ChangeEmail")}>
+            <FontAwesome name="edit" color={colors.text} size={20} />
+          </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.commandButton} onPress={() => {}}>
           <Text style={styles.panelButtonTitle}>Submit</Text>
@@ -109,13 +112,10 @@ const Profile = ({ navigation }) => {
           <TouchableOpacity onPress={() => navigation.navigate("MyPosts")}>
             <Text style={styles.profileFooterText}>My Posts</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("ChangePwd")}>
-            <Text style={styles.profileFooterText}>Change password</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("RemoveAcc")}>
+            <Text style={styles.remove_account_text}>Remove account...</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("RemoveAcc")}>
-          <Text style={styles.remove_account_text}>Remove account...</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -228,6 +228,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#f2f2f2",
     paddingBottom: 5,
+    justifyContent: "space-between",
   },
   actionError: {
     flexDirection: "row",
@@ -246,7 +247,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "600",
     color: "red",
-    paddingTop: 10,
   },
 });
 

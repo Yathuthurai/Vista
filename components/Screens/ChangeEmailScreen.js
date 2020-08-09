@@ -14,13 +14,16 @@ import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import { useDispatch } from "react-redux";
-import { forgotPassword } from "../Store/Actions/auth";
+import { forgotPassword, changeEmail } from "../Store/Actions/auth";
 
-const ForgotPasswordScreen = ({ navigation }) => {
+const ChangeEmailScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
     email: "",
     check_textInputChange: false,
     error: null,
+    password: "",
+    secureTextEntry: true,
+    isLoading: false,
   });
 
   const dispatch = useDispatch();
@@ -41,6 +44,20 @@ const ForgotPasswordScreen = ({ navigation }) => {
     }
   };
 
+  const updateSecureTextEntry = () => {
+    setData({
+      ...data,
+      secureTextEntry: !data.secureTextEntry,
+    });
+  };
+
+  const handlePasswordChange = (val) => {
+    setData({
+      ...data,
+      password: val,
+    });
+  };
+
   const submitHandler = async () => {
     setData({
       ...data,
@@ -48,14 +65,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       isLoading: true,
     });
     try {
-      await dispatch(forgotPassword(data.email));
-      setData({
-        ...data,
-        isLoading: false,
-      });
-      Alert.alert("Success", "Check your email", [
-        { text: "OK", onPress: () => navigation.navigate("SignIn") },
-      ]);
+      await dispatch(changeEmail(data.password, data.email));
     } catch (e) {
       setData({
         ...data,
@@ -82,14 +92,29 @@ const ForgotPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.text_header}>Forgot your password?</Text>
+        <Text style={styles.text_header}>Change your email...</Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-        <Text style={styles.text_footer}>
-          To reset your password, submit your email address below. If we can
-          find your email, an email will be sent to your email address, with
-          instructions how to get access again.
-        </Text>
+        <Text style={styles.text_footer}>Account Password</Text>
+        <View style={styles.action}>
+          <FontAwesome name="lock" color="#05375a" size={20} />
+          <TextInput
+            placeholder="Your Password"
+            secureTextEntry={data.secureTextEntry ? true : false}
+            autoCapitalize="none"
+            style={styles.textInput}
+            onChangeText={(val) => handlePasswordChange(val)}
+          />
+          <TouchableOpacity onPress={updateSecureTextEntry}>
+            {data.secureTextEntry ? (
+              <Feather name="eye-off" color="grey" size={20} />
+            ) : (
+              <Feather name="eye" color="grey" size={20} />
+            )}
+          </TouchableOpacity>
+        </View>
+
+        <Text style={styles.text_footer}>New Email</Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="#05375a" size={20} />
           <TextInput
@@ -117,7 +142,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
   );
 };
 
-export default ForgotPasswordScreen;
+export default ChangeEmailScreen;
 
 const styles = StyleSheet.create({
   container: {

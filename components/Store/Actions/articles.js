@@ -12,8 +12,9 @@ export const SET_FAVORITES = "SET_FAVORITES";
 export const setArticles = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const token = getState().auth.token;
     const response = await fetch(
-      "https://articlesharingsystem.firebaseio.com/articles.json"
+      `https://articlesharingsystem.firebaseio.com/articles.json?auth=${token}`
     );
 
     const responseData = await response.json();
@@ -46,12 +47,13 @@ export const setArticles = () => {
 export const postArtricles = (title, imageUrl, description, referenceLink) => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const token = getState().auth.token;
     const userName = getState().auth.firstName + " " + getState().auth.lastName;
     const avatar = getState().auth.profilePicture;
 
     const createdAt = new Date();
     const response = await fetch(
-      "https://articlesharingsystem.firebaseio.com/articles.json",
+      `https://articlesharingsystem.firebaseio.com/articles.json?auth=${token}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,9 +90,10 @@ export const postArtricles = (title, imageUrl, description, referenceLink) => {
 };
 
 export const deleteArtricles = (articleId) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://articlesharingsystem.firebaseio.com/articles/${articleId}.json`,
+      `https://articlesharingsystem.firebaseio.com/articles/${articleId}.json?auth=${token}`,
       { method: "DELETE" }
     );
     if (!response.ok) {
@@ -109,11 +112,12 @@ export const updateArtricles = (
 ) => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const token = getState().auth.token;
     const userName = getState().auth.firstName + " " + getState().auth.lastName;
     const createdAt = new Date();
     const avatar = getState().auth.profilePicture;
     const response = await fetch(
-      `https://articlesharingsystem.firebaseio.com/articles/${id}.json`,
+      `https://articlesharingsystem.firebaseio.com/articles/${id}.json?auth=${token}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -170,6 +174,7 @@ export const addToFavorite = (articleId) => {
           ownerId: article.ownerId,
           userName: article.owner,
           createdAt: article.moment,
+          avatar: article.avatar,
         });
       }
     });
@@ -181,8 +186,9 @@ export const addToFavorite = (articleId) => {
 export const fetchFavorite = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://articlesharingsystem.firebaseio.com/users/${userId}/favorites.json`
+      `https://articlesharingsystem.firebaseio.com/users/${userId}/favorites.json?auth=${token}`
     );
     const responseData = await response.json();
     const loadedArticles = [];
@@ -190,7 +196,7 @@ export const fetchFavorite = () => {
       loadedArticles.push(
         new ArticlePost(
           key,
-          "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png",
+          responseData[key].avatar,
           responseData[key].userName,
           responseData[key].createdAt,
           responseData[key].title,

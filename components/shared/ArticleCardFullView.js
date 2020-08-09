@@ -8,7 +8,7 @@ import {
   TextInput,
   Linking,
 } from "react-native";
-import { Avatar } from "react-native-paper";
+import { Avatar, Divider } from "react-native-paper";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import CardBottom from "./CardBottom";
@@ -48,7 +48,7 @@ const ArticleCard = (props) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity>
+      <View>
         <Text style={styles.title}>{props.title}</Text>
         {props.image ? (
           <Image
@@ -59,7 +59,7 @@ const ArticleCard = (props) => {
           />
         ) : null}
         {/* <Image source={{ uri: props.image }} style={styles.card} /> */}
-      </TouchableOpacity>
+      </View>
       <View style={styles.line_avatar} />
       <Text style={{ textAlign: "justify" }}>{props.description}</Text>
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   card: {
-    width: "100%",
+    // width: "100%",
     height: 195,
     //aspectRatio: 16 / 9,
     borderRadius: 5,
@@ -153,8 +153,7 @@ const styles = StyleSheet.create({
   },
   line_avatar: {
     borderWidth: 1,
-    width: 320,
-    marginLeft: 20,
+    marginHorizontal: 20,
     marginTop: 5,
     borderColor: "gainsboro",
   },

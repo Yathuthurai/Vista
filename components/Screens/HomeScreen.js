@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -23,7 +23,20 @@ import { setArticles, fetchFavorite } from "../Store/Actions/articles";
 import { useSelector, useDispatch } from "react-redux";
 
 const HomeScreen = ({ navigation }) => {
-  const article_data = useSelector((state) => state.article.allPosts);
+  const [search, setSearch] = useState("");
+  const [reload, setReload] = useState(false);
+  const article_data = useSelector((state) => {
+    const article = state.article.allPosts;
+    console.log(article);
+    if (search) {
+      return article.filter(
+        (article) =>
+          article.title.toLowerCase().includes(search.toLowerCase()) ||
+          article.description.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+    return article;
+  });
 
   const clickHandler = (id) => {
     navigation.navigate("ArticleCardFullView", { id });
@@ -32,9 +45,11 @@ const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const loadArticles = useCallback(async () => {
+    setReload(true);
     await dispatch(setArticles());
     await dispatch(fetchFavorite());
-  }, [dispatch]);
+    setReload(false);
+  }, [dispatch, setReload]);
 
   useEffect(() => {
     loadArticles();
@@ -47,7 +62,7 @@ const HomeScreen = ({ navigation }) => {
           <FontAwesome name="user" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <FontAwesome name="home" color="dodgerblue" size={33} />
+          <FontAwesome name="home" color="grey" size={30} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
           <FontAwesome name="star" color="dodgerblue" size={33} />
@@ -57,9 +72,12 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </Animatable.View>
       <View style={styles.searchbar_container}>
-        <SearchbarElement />
+        <SearchbarElement value={search} onChangeText={setSearch} />
       </View>
       <FlatList
+        onRefresh={loadArticles}
+        refreshing={reload}
+        showsVerticalScrollIndicator={false}
         data={article_data}
         renderItem={({ item }) => (
           <ArticleCard

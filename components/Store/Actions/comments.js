@@ -7,8 +7,9 @@ export const SET_COMMENT = "SET_COMMENT";
 export const setComment = (articleId) => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const token = getState().auth.token;
     const response = await fetch(
-      `https://articlesharingsystem.firebaseio.com/articles/${articleId}/comment.json`
+      `https://articlesharingsystem.firebaseio.com/articles/${articleId}/comment.json?auth=${token}`
     );
 
     const responseData = await response.json();
@@ -34,11 +35,12 @@ export const setComment = (articleId) => {
 export const postComments = (articleId, comment) => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
+    const token = getState().auth.token;
     const userName = getState().auth.firstName + " " + getState().auth.lastName;
 
     const createdAt = new Date();
     const response = await fetch(
-      `https://articlesharingsystem.firebaseio.com/articles/${articleId}/comment.json`,
+      `https://articlesharingsystem.firebaseio.com/articles/${articleId}/comment.json?auth=${token}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

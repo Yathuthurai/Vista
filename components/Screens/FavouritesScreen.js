@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -21,7 +21,18 @@ import ArticleCard from "../shared/ArticleCard";
 import { useSelector, useDispatch } from "react-redux";
 
 const FavouritesScreen = ({ navigation }) => {
-  const article_data = useSelector((state) => state.article.favPosts);
+  const [search, setSearch] = useState("");
+  const article_data = useSelector((state) => {
+    const article = state.article.favPosts;
+    if (search) {
+      return article.filter(
+        (article) =>
+          article.title.toLowerCase().includes(search.toLowerCase()) ||
+          article.description.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+    return article;
+  });
   const clickHandler = (id) => {
     navigation.navigate("ArticleCardFullView", { id });
   };
@@ -35,16 +46,17 @@ const FavouritesScreen = ({ navigation }) => {
           <FontAwesome name="home" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Favourites")}>
-          <FontAwesome name="star" color="dodgerblue" size={33} />
+          <FontAwesome name="star" color="grey" size={30} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Add")}>
           <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
         </TouchableOpacity>
       </Animatable.View>
       <View style={styles.searchbar_container}>
-        <SearchbarElement />
+        <SearchbarElement value={search} onChangeText={setSearch} />
       </View>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={article_data}
         renderItem={({ item }) => (
           <ArticleCard

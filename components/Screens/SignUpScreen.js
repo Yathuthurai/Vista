@@ -10,6 +10,7 @@ import {
   Alert,
   ActivityIndicator,
   ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 
 import * as Animatable from "react-native-animatable";
@@ -117,95 +118,105 @@ const SignUpScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text_header}>Register Now!</Text>
-      </View>
-      <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-        <Text style={styles.text_footer}>Email</Text>
-        <View style={styles.action}>
-          <FontAwesome name="envelope" color="#05375a" size={17} />
-          <TextInput
-            placeholder="Your Email"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(val) => emailInputChange(val)}
-          />
-          {data.check_textInputChange ? (
-            <Animatable.View animation="bounceIn">
-              <Feather name="check-circle" color="green" size={20} />
-            </Animatable.View>
-          ) : null}
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <View style={styles.header}>
+          <Text style={styles.text_header}>Register Now!</Text>
         </View>
-        <Text style={[styles.text_footer, { marginTop: 20 }]}>First Name</Text>
-        <View style={styles.action}>
-          <FontAwesome name="user" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Your user name"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(val) => firstNameInputChange(val)}
-          />
-        </View>
-        <Text style={[styles.text_footer, { marginTop: 20 }]}>Last Name</Text>
-        <View style={styles.action}>
-          <FontAwesome name="user" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Your user name"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(val) => lastNameInputChange(val)}
-          />
-        </View>
-        <Text style={[styles.text_footer, { marginTop: 20 }]}>Password</Text>
-        <View style={styles.action}>
-          <FontAwesome name="lock" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Your Password"
-            secureTextEntry={data.secureTextEntry ? true : false}
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(val) => handlePasswordChange(val)}
-          />
-          <TouchableOpacity onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ? (
-              <Feather name="eye-off" color="grey" size={20} />
-            ) : (
-              <Feather name="eye" color="grey" size={20} />
-            )}
-          </TouchableOpacity>
-        </View>
-        <Text style={[styles.text_footer, { marginTop: 20 }]}>
-          Confirm Password
-        </Text>
-        <View style={styles.action}>
-          <FontAwesome name="lock" color="#05375a" size={20} />
-          <TextInput
-            placeholder="Confirm Your Password"
-            secureTextEntry={data.secureTextEntry ? true : false}
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={(val) => handlePasswordChange(val)}
-          />
-          <TouchableOpacity onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ? (
-              <Feather name="eye-off" color="grey" size={20} />
-            ) : (
-              <Feather name="eye" color="grey" size={20} />
-            )}
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity style={styles.button} onPress={submitHandler}>
-            <Text style={styles.signInBtntxt}>Sign Up</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.signUpBtn}
-            onPress={() => navigation.goBack()}
-          >
-            <Text style={styles.signUpBtntxt}>Sign In</Text>
-          </TouchableOpacity>
-        </View>
-      </Animatable.View>
+        <Animatable.View animation="fadeInUpBig" style={styles.footer}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Text style={styles.text_footer}>Email</Text>
+            <View style={styles.action}>
+              <FontAwesome name="envelope" color="#05375a" size={17} />
+              <TextInput
+                placeholder="Your Email"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(val) => emailInputChange(val)}
+              />
+              {data.check_textInputChange ? (
+                <Animatable.View animation="bounceIn">
+                  <Feather name="check-circle" color="green" size={20} />
+                </Animatable.View>
+              ) : null}
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 20 }]}>
+              First Name
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="user" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your first name"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(val) => firstNameInputChange(val)}
+              />
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 20 }]}>
+              Last Name
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="user" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your last name"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(val) => lastNameInputChange(val)}
+              />
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 20 }]}>
+              Password
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="lock" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Password"
+                secureTextEntry={data.secureTextEntry ? true : false}
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(val) => handlePasswordChange(val)}
+              />
+              <TouchableOpacity onPress={updateSecureTextEntry}>
+                {data.secureTextEntry ? (
+                  <Feather name="eye-off" color="grey" size={20} />
+                ) : (
+                  <Feather name="eye" color="grey" size={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 20 }]}>
+              Confirm Password
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="lock" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Confirm Your Password"
+                secureTextEntry={data.secureTextEntry ? true : false}
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(val) => handlePasswordChange(val)}
+              />
+              <TouchableOpacity onPress={updateSecureTextEntry}>
+                {data.secureTextEntry ? (
+                  <Feather name="eye-off" color="grey" size={20} />
+                ) : (
+                  <Feather name="eye" color="grey" size={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity style={styles.button} onPress={submitHandler}>
+                <Text style={styles.signInBtntxt}>Sign Up</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.signUpBtn}
+                onPress={() => navigation.goBack()}
+              >
+                <Text style={styles.signUpBtntxt}>Sign In</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </Animatable.View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -265,7 +276,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   button: {
-    width: 350,
+    // width: 350,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
@@ -273,13 +284,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "dodgerblue",
     marginTop: 40,
-  },
-  signIn: {
-    width: "100%",
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
   },
   textSign: {
     fontSize: 18,
@@ -291,7 +295,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   signUpBtn: {
-    width: 350,
+    // width: 350,
     height: 40,
     justifyContent: "center",
     alignItems: "center",

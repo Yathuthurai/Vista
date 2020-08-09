@@ -56,7 +56,7 @@ const AddArticleScreen = ({ navigation, route }) => {
         <Text style={styles.gobackButtonTitle}>Back</Text>
       </TouchableOpacity>
       <View style={styles.add_article_container}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={[styles.text_footer, { marginTop: 30 }]}>
             Add your article title
           </Text>

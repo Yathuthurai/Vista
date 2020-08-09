@@ -172,3 +172,25 @@ export const deleteAccount = (password) => {
     }
   };
 };
+
+export const changeEmail = (password, email) => {
+  return async (dispatch, getState) => {
+    try {
+      const userId = getState().auth.userId;
+      const oldEmail = getState().auth.email;
+      await firebase.auth().signInWithEmailAndPassword(oldEmail, password);
+      await firebase.database().ref(`users/${userId}`).update({ email });
+      await firebase.auth().currentUser.updateEmail(email);
+      dispatch({
+        type: LOGOUT,
+      });
+    } catch (e) {
+      if (e.code === "auth/wrong-password") {
+        throw new Error("Incorrect password");
+      }
+      if (e.code === "auth/email-already-in-use") {
+        throw new Error("Email already exists");
+      }
+    }
+  };
+};

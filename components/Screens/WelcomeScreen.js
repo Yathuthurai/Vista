@@ -43,6 +43,9 @@ const WelcomeScreen = ({ navigation }) => {
             <MaterialIcons name="navigate-next" color="#fff" size={20} />
           </TouchableOpacity>
         </View>
+        <Text style={styles.text}>Project by:</Text>
+        <Text style={styles.textIntro}>T.Yathurshan</Text>
+        <Text style={styles.textIntro}>17001986</Text>
       </Animatable.View>
     </View>
   );
@@ -77,16 +80,22 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#05375a",
-    fontSize: 30,
+    fontSize: 26,
     fontWeight: "bold",
   },
   text: {
     color: "grey",
     marginTop: 5,
   },
+  textIntro: {
+    color: "black",
+    marginTop: 5,
+    fontSize: 16,
+    fontWeight: "700",
+  },
   button: {
     alignItems: "flex-end",
-    marginTop: 30,
+    marginTop: 10,
   },
   signIn: {
     width: 150,
@@ -105,5 +114,11 @@ const styles = StyleSheet.create({
     color: "powderblue",
     fontWeight: "bold",
     fontSize: 35,
+  },
+  text_des: {
+    color: "powderblue",
+    fontWeight: "bold",
+    fontSize: 16,
+    justifyContent: "flex-start",
   },
 });

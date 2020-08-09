@@ -9,6 +9,7 @@ import {
   Alert,
   ScrollView,
   TextInput,
+  KeyboardAvoidingView,
 } from "react-native";
 
 import { Avatar } from "react-native-paper";
@@ -55,76 +56,82 @@ const AddArticleScreen = ({ navigation }) => {
           <FontAwesome name="star" color="dodgerblue" size={33} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Add")}>
-          <FontAwesome name="plus-circle" color="dodgerblue" size={33} />
+          <FontAwesome name="plus-circle" color="grey" size={30} />
         </TouchableOpacity>
       </Animatable.View>
 
       <View style={styles.add_article_container}>
-        <ScrollView>
-          <Text style={[styles.text_footer, { marginTop: 30 }]}>
-            Add your article title
-          </Text>
-          <View style={styles.action}>
-            <FontAwesome name="bookmark" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Article title"
-              autoCapitalize="none"
-              style={styles.textInput}
-              onChangeText={(text1) => setText1(text1)}
-            />
-          </View>
-          <Text style={[styles.text_footer, { marginTop: 30 }]}>
-            Add your Image url here
-          </Text>
-          <View style={styles.action}>
-            <FontAwesome name="image" color="#05375a" size={17} />
-            <TextInput
-              placeholder="Image url"
-              autoCapitalize="none"
-              style={styles.textInput}
-              onChangeText={(text2) => setText2(text2)}
-            />
-          </View>
-          <Text style={[styles.text_footer, { marginTop: 30 }]}>
-            Add your Article Content here
-          </Text>
-          <View style={styles.action}>
-            <FontAwesome name="book" color="#05375a" size={20} />
-            <TextInput
-              placeholder="Article content"
-              autoCapitalize="none"
-              style={styles.textInput}
-              onChangeText={(text3) => setText3(text3)}
-              multiline
-            />
-          </View>
-          <Text style={[styles.text_footer, { marginTop: 30 }]}>
-            Add your Reference Links here
-          </Text>
-          <View style={styles.action}>
-            <FontAwesome name="link" color="#05375a" size={20} />
-            <TextInput
-              placeholder="References"
-              autoCapitalize="none"
-              style={styles.textInput}
-              onChangeText={(text4) => setText4(text4)}
-              multiline
-            />
-          </View>
-          <View style={{ alignItems: "center", paddingVertical: 20 }}>
-            <TouchableOpacity
-              style={styles.button_go}
-              onPress={() =>
-                Alert.alert("Confirm", "Are you going to post this Article ?", [
-                  { text: "Post", onPress: () => postHandler() },
-                  { text: "Cancel" },
-                ])
-              }
-            >
-              <Text style={styles.goBtntxt}>POST</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+        <KeyboardAvoidingView style={{ flex: 1 }}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Text style={[styles.text_footer, { marginTop: 30 }]}>
+              Add your article title
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="bookmark" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Article title"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(text1) => setText1(text1)}
+              />
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 30 }]}>
+              Add your Image url here
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="image" color="#05375a" size={17} />
+              <TextInput
+                placeholder="Image url"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(text2) => setText2(text2)}
+              />
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 30 }]}>
+              Add your Article Content here
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="book" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Article content"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(text3) => setText3(text3)}
+                multiline
+              />
+            </View>
+            <Text style={[styles.text_footer, { marginTop: 30 }]}>
+              Add your Reference Links here
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="link" color="#05375a" size={20} />
+              <TextInput
+                placeholder="References"
+                autoCapitalize="none"
+                style={styles.textInput}
+                onChangeText={(text4) => setText4(text4)}
+                multiline
+              />
+            </View>
+            <View style={{ alignItems: "center", paddingVertical: 20 }}>
+              <TouchableOpacity
+                style={styles.button_go}
+                onPress={() =>
+                  Alert.alert(
+                    "Confirm",
+                    "Are you going to post this Article ?",
+                    [
+                      { text: "Post", onPress: () => postHandler() },
+                      { text: "Cancel" },
+                    ]
+                  )
+                }
+              >
+                <Text style={styles.goBtntxt}>POST</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </View>
     </View>
   );
@@ -150,6 +157,7 @@ const styles = StyleSheet.create({
   },
   add_article_container: {
     paddingTop: 20,
+    flex: 1,
   },
   textInput: {
     marginTop: Platform.OS === "ios" ? 0 : -12,
